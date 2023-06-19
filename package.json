@@ -1,0 +1,28 @@
+{
+  "name": "ecommerce_fullstack_app",
+  "version": "1.0.0",
+  "description": "ecommerece app",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server",
+    "serve": "nodemon backend/server",
+    "client": "npm run dev --prefix frontend",
+    "data:insert": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d",
+    "dev": "concurrently \"npm run client\" \"npm run serve\""
+  },
+  "author": "Achraf_Moreau",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^8.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.3.0",
+    "nodemon": "^2.0.22"
+  }
+}
