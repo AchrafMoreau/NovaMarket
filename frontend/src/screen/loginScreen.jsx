@@ -12,6 +12,7 @@ export const LoginScreen = () => {
 
     const redirect = useLocation().search ? useLocation().search.split("=")[1] : "/"
 
+
     const navigate = useNavigate('/')
     const dispatch = useDispatch()
     const userLogin = useSelector(state => state.userLogin)
@@ -34,7 +35,7 @@ export const LoginScreen = () => {
             <h1 className='text-center mb-3'>Sign In</h1>
             {error && <Message variant='alert-danger' children={error}/>}
             {loading && <Loading />}
-            <form action=""  onSubmit={handleForm}>
+            <form action="" method='POST' onSubmit={handleForm}>
                 <div className="row">
                     <div className="col-12">
                         <label htmlFor="email" className="form-label">Email: </label>

@@ -50,22 +50,52 @@ const registerUser = asyncHandler( async(req, res)=>{
     })
     if(user){
         res.status(201).json({
-            message: "user Created Successfully",
-            data: {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                password: user.password,
-                isAdmin: user.isAdmin,
-            }
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            password: user.password,
+            isAdmin: user.isAdmin,
         })
     }else{
         res.status(400)
         throw new Error("Some Data Is Missing")
     }
 })
+
+const updateUser = asyncHandler( async(req, res)=>{
+    const user = await Users.findById(req.user._id)
+
+
+    if(user){
+        user.name = req.body.name || user.name
+        user.email = req.body.email ||user.name
+        if(user.password){
+            user.password = req.body.password || user.password
+        }
+
+        const updateUser = await user.save() 
+
+        if(updateUser){
+            res.status(200).json({
+                id: updateUser._id,
+                name: updateUser.name,
+                email: updateUser.email,
+                password: updateUser.password,
+                isAdmin: updateUser.isAdmin,
+                Token: generateWebToken(updateUser._id)
+            })
+        }
+    }else{
+        res.status(400)
+        throw new Error("User not Found!")
+    }
+})
+
+
+
 export {
     userAuth,
     getUserProfile,
-    registerUser,  
+    registerUser, 
+    updateUser, 
 }

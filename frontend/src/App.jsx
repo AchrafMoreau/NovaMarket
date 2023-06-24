@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import ProductScreen from './screen/productScreen'
 import { CartScreen } from './screen/cartScreen'
 import { LoginScreen } from './screen/loginScreen'
+import { RegisterScreen } from './screen/registerScreen'
+import { ProfileScreen } from './screen/profileScreen'
 import './App.css'
 
 function App() {
@@ -14,7 +16,9 @@ function App() {
           <Header />
           <div className="container">
             <Routes>
-              <Route path="/login" element={<LoginScreen />} exact />
+              <Route path="/login" element={<LoginScreen />}  />
+              <Route path='/profile' element={<ProfileScreen />}/>
+              <Route path="/register" element={<RegisterScreen />}  />
               <Route path="/product/:id" element={<ProductScreen />} />
               <Route path='/cart/:id?' element={<CartScreen />} />
               <Route path="/" element={<HomeScreen />} exact />

@@ -21,7 +21,7 @@ const userCheckAuth = asyncHandler( async(req, res, next)=>{
         }
     }else{
         res.status(404)
-        throw new Error("No Token Wa Found")
+        throw new Error("No Token Was Found")
     }
 }) 
 
