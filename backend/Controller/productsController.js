@@ -4,7 +4,6 @@ import Product from "../Models/productModel.js";
 
 const getAllProducts = asyncHandler( async(req, res)=>{
     const allproduct = await Product.find({})
-    
     res.json(allproduct)
 })
 

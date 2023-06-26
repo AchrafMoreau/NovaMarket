@@ -7,8 +7,11 @@ import { CartScreen } from './screen/cartScreen'
 import { LoginScreen } from './screen/loginScreen'
 import { RegisterScreen } from './screen/registerScreen'
 import { ProfileScreen } from './screen/profileScreen'
-import { ShippingAddress } from './screen/shippingScreen'
+import { ShippingAddress } from './screen/shippingScreen';
+import { PaymentMethods } from './screen/paymentScreen'
+import { PlaceOrder } from './screen/placeOrderScreen'
 import './App.css'
+import { Modlue3d } from './component/test3d'
 
 function App() {
 
@@ -18,12 +21,16 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/login" element={<LoginScreen />}  />
+              <Route path="/placeorder" element={<PlaceOrder />}  />
+              <Route path="/payment" element={<PaymentMethods/>}  />
               <Route path="/shipping" element={<ShippingAddress />}  />
               <Route path='/profile' element={<ProfileScreen />}/>
               <Route path="/register" element={<RegisterScreen />}  />
               <Route path="/product/:id" element={<ProductScreen />} />
               <Route path='/cart/:id?' element={<CartScreen />} />
+              <Route path="/module" element={<Modlue3d />}  />
               <Route path="/" element={<HomeScreen />} exact />
+
             </Routes>
           </div>
           <Footer />

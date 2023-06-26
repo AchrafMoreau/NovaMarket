@@ -9,9 +9,7 @@ const userCheckAuth = asyncHandler( async(req, res, next)=>{
     if(req.headers.authorization && req.headers.authorization.startsWith('Token')){
         try{
             Token = req.headers.authorization.split(" ")[1]
-    
             const decode =  jwt.verify(Token, process.env.JWT_SECRET)
-    
             req.user = await User.findById(decode.id).select("-password")
             
             next()

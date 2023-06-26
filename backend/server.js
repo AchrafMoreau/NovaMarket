@@ -5,6 +5,7 @@ import dbConnection from "./config/db.js"
 import ProducctRoute from "./router/productsRouter.js"
 import { NotFound, errHandler } from "./middleWare/errorMiddleWare.js"
 import UserRouter from "./router/userRouter.js"
+import OrderRouter from "./router/orderRoutee.js"
 
 dotenv.config()
 const app = express()
@@ -15,6 +16,7 @@ app.use(cors())
 app.use(express.json())
 app.use("/api/product", ProducctRoute)
 app.use('/api/user', UserRouter)
+app.use("/api/order", OrderRouter)
 
 // error middleware
 app.use(NotFound)
