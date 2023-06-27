@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { getUserDetails, userUpdateProfile } from '../actions/userActions';
 import { Message } from '../component/error';
 import { Loading } from '../component/loading';
-
+import { userOrders } from '../actions/orderAcrions';
 import { Link } from 'react-router-dom';
 
 export const ProfileScreen = () => {
@@ -38,12 +38,16 @@ export const ProfileScreen = () => {
 
     const userUpdate = useSelector(state=> state.userUpdate)
     const { success } = userUpdate
+
+    const orderUserList = useSelector(state=> state.orderUserList)
+    const { loading:orderLoading, error: orderError, orderList} = orderUserList
     useEffect(()=>{
         if(!userInfo){
             navigate('/login')
         }else{
             if(!user.name){
                 dispatch(getUserDetails("profile"))
+                dispatch(userOrders())
             }else{
                 setValues((prev)=>({
                     ...prev,
@@ -74,8 +78,8 @@ export const ProfileScreen = () => {
 
     return (
         <>
-            <div className="row ">
-                <div className="col-md-4 ">
+            <div className="row">
+                <div className="col-md-3 ">
                     <h1 className='text-center mb-3'>Profile</h1>
                     {error && <Message variant={"alert-danger"} children={error} />}
                     {success && <Message variant={"alert-success"} children={"Profile Updated"} />}
@@ -142,8 +146,41 @@ export const ProfileScreen = () => {
                         
                     </form>
                 </div>
-                <div className="col-md-8">
+                <div className="col-md-9">
                     <h1>Our Order</h1>
+                    {orderLoading ? <Loading /> : orderError ? <Message variant={"alert-danger"} children={orderError} /> :
+                    (<table className="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>DATE</th>
+                                    <th>TOTAL</th>
+                                    <th>PAID</th>
+                                    <th>DELIVERED</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {orderList.map((elm)=>{
+                                    return(
+                                        <tr key={elm._id}>
+                                            <td>{elm._id.substring(1,10)}</td>
+                                            <td>{elm.createdAt.substring(0, 10)}</td>
+                                            <td>$ {elm.totalPrice}</td>
+                                            <td>{elm.isPaid ? elm.paidAt.substring(0,10) : <i className='fas fa-times' style={{color:"red"}}></i> } </td>
+                                            <td>{elm.isDeliverd ? "Yes" : <i className='fas fa-times' style={{color:"red"}}></i> } </td>
+                                            <td>
+                                                <Link to={`/order/${elm._id}`}>
+                                                    <button className='btn btn-sm btn-light'>
+                                                        Details
+                                                    </button>
+                                                </Link>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>)
+                    }
                 </div>
             </div>
             

@@ -42,6 +42,7 @@ export const PlaceOrder = () => {
         } = cart
 
         dispatch(createOrder({
+            itemsPrice,
             shippingPrice,
             tax,
             total,
