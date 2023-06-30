@@ -19,6 +19,7 @@ export const userLoginReducer = (state={}, action) =>{
     }
 }
 
+
 export const userRigesterReducer = (state= {}, action)=>{
     switch(action.type){
         case "USER_REGISTER_LOADING":
@@ -41,7 +42,7 @@ export const userRigesterReducer = (state= {}, action)=>{
 
 export const userDetailsReducer = (state={ user: {}}, action)=>{
     switch(action.type){
-        case "  ":
+        case "USER_DETAILS_LOADING":
             return{
                 ...state, loading: true
             }
@@ -53,6 +54,8 @@ export const userDetailsReducer = (state={ user: {}}, action)=>{
             return{
                 loading:false, error:action.payload
             }
+        case "USER_DETAILS_RESET":
+            return { user: {}}
         default:
             return state
     }
@@ -71,6 +74,27 @@ export const userUpdateProfileReducer = (state={}, action) =>{
         case "USER_UPDATE_FAIL":
             return{
                 loading:false , error: action.payload
+            }
+        default:
+            return state
+    }
+}
+
+export const usersListReducer = (state={users: []}, action)=>{
+    switch(action.type){
+        case "USERS_LIST_REQUEST":
+            return{
+                loading: true
+            }
+        case "USERS_LIST_SUCCESS":
+            return{
+                loading: false,
+                users: action.payload
+            }
+        case "USERS_LIST_FAIL":
+            return{
+                loading:false,
+                error: action.payload
             }
         default:
             return state

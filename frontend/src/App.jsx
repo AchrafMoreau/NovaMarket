@@ -13,6 +13,7 @@ import { PlaceOrder } from './screen/placeOrderScreen'
 import { AllOrdersScreen } from './screen/orderScreeen'
 import './App.css'
 import { Modlue3d } from './component/test3d'
+import { UserListScreen } from './screen/userListScreen'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
               <Route path="/product/:id" element={<ProductScreen />} />
               <Route path='/cart/:id?' element={<CartScreen />} />
               <Route path="/module" element={<Modlue3d />}  />
+              <Route path="/admin/users" element={<UserListScreen />}  />
               <Route path="/" element={<HomeScreen />} exact />
 
             </Routes>

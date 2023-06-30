@@ -1,15 +1,18 @@
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../actions/userActions";
 
 const Header = ()=>{
 
+    const navigate = useNavigate('/')
     const dispatch = useDispatch()
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
     const logoutHandler = ()=>{
         dispatch(logout())
+        navigate("/")
+        location.reload()
     }
      return(
         <nav className="navbar navbar-expand-lg bg-light">
@@ -38,6 +41,7 @@ const Header = ()=>{
                                 <li className="dropdown-item">
                                     <Link to='/profile'>Profiel</Link>
                                 </li>
+                                
                                 <li className="dropdown-item"  onClick={logoutHandler}>
                                     Logout
                                 </li>
@@ -52,6 +56,26 @@ const Header = ()=>{
                         </Link>
                     </li>
                     }
+                    {userInfo && userInfo.isAdmin && (
+                        <li className="nav-link ms-3 me-5">
+                            <div className="dropdown">
+                                <div className="dropdown-toggle" style={{cursor: "pointer"}} data-bs-toggle="dropdown" aria-expanded="false">
+                                    Admin
+                                </div>
+                                <ul className="dropdown-menu">
+                                    <li className="dropdown-item">
+                                        <Link to='/admin/users'>Users</Link>
+                                    </li>
+                                    <li className="dropdown-item">
+                                        <Link to='/admin/products'>Products</Link>
+                                    </li>
+                                    <li className="dropdown-item">
+                                        <Link to='/admin/orders'>Orders</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li> 
+                    )}
                 </ul>
                 </div>
             </div>

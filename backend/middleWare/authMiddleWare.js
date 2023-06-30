@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 import User from "../Models/userModel.js";
 
 
-const userCheckAuth = asyncHandler( async(req, res, next)=>{
+const  protect  = asyncHandler( async(req, res, next)=>{
     let Token
 
     if(req.headers.authorization && req.headers.authorization.startsWith('Token')){
@@ -23,4 +23,14 @@ const userCheckAuth = asyncHandler( async(req, res, next)=>{
     }
 }) 
 
-export default userCheckAuth
+const usersAuthMiddleWare = (req, res, next)=>{
+    if(req.user && req.user.isAdmin){
+        next()
+    }else{
+        res.status(400)
+        throw new Error("No authroiezed as an Admin")
+    }
+}
+export { protect,
+    usersAuthMiddleWare
+}

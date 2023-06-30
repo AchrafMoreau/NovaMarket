@@ -18,6 +18,8 @@ app.use("/api/product", ProducctRoute)
 app.use('/api/user', UserRouter)
 app.use("/api/order", OrderRouter)
 
+// get the paypal api clinet 
+app.get("/api/config/paypal", (req,res)=> res.send(process.env.PAYPAL_API_CLIENT))
 // error middleware
 app.use(NotFound)
 app.use(errHandler)

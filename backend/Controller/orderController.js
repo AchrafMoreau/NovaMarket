@@ -10,6 +10,7 @@ const addOrderItems = asyncHandler( async(req, res)=>{
         cartItems,
         shippingAddress,
         paymentMethod,
+        itemsPrice,
     } = req.body
 
     if(cartItems && cartItems.length === 0){
@@ -19,6 +20,7 @@ const addOrderItems = asyncHandler( async(req, res)=>{
     }else{
         const order = await new Order({
             user:req.user._id,
+            NETpriceItem: itemsPrice,
             shippingPrice: shippingPrice,
             taxPrice: tax,
             totalPrice: total,
@@ -44,7 +46,40 @@ const getAllOrder = asyncHandler( async(req, res)=>{
     }
 })
 
+const updateOrderToPaid = asyncHandler( async(req, res)=>{
+    const order = await Order.findById(req.params.id)
+
+    if(order){
+        order.isPaid = true,
+        order.paidAt = Date.now(),
+        order.paymentResult = {
+            id: req.body.id,
+            status: req.body.status,
+            update_time: req.body.update_time,
+            email_address: req.body.payer.email_address
+        }
+
+        const updateOrder = await order.save()
+        res.status(200).json(updateOrder)
+    }else{
+        res.status(400)
+        throw new Error("Oder Not Found")
+    }
+})
+
+
+const getAllUserOrder = asyncHandler( async(req, res)=>{
+    const orders = await Order.find({user: req.user._id})
+    if(orders){
+        res.status(200).json(orders)
+    }else{
+        res.status(400)
+        throw new Error("User Was Not Found")
+    }
+})
 export {
     addOrderItems,
-    getAllOrder
+    getAllOrder,
+    updateOrderToPaid,
+    getAllUserOrder
 }

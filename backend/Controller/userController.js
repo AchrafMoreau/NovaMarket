@@ -91,11 +91,20 @@ const updateUser = asyncHandler( async(req, res)=>{
     }
 })
 
-
+const getUsers = asyncHandler( async(req,res)=>{
+    const users = await Users.find({})
+    if(users){
+        res.status(200).json(users)
+    }else{
+        res.status(400)
+        throw new Error("No Users Was Found")
+    }
+})
 
 export {
     userAuth,
     getUserProfile,
     registerUser, 
     updateUser, 
+    getUsers
 }
