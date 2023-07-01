@@ -157,3 +157,30 @@ export const getAllusersList = ()=> async(dispatch, getState)=>{
         })
     }
 } 
+
+export const removingUser = (id)=> async(dispatch, getState)=>{
+    try{
+        dispatch({
+            type: "DELETE_USER_REQUEST"
+        })
+
+        const {userLogin:{userInfo}} = getState()
+        const config = {
+            headers:{
+                authorization: `Token ${userInfo.token}`
+            }
+        }
+
+        const { data } = await axios.delete(`http://localhost:3000/api/user/${id}`, config) 
+        if(data){
+            dispatch({
+                type:"DELETE_USER_SUCCESS",
+            })
+        }
+   }catch(err){
+        dispatch({
+            type: "DELETE_USER_FAIL",
+            payload: err.response && err.response.data.message ? err.response.data.message : err.message
+        })
+    }
+}
