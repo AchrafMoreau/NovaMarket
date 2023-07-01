@@ -101,10 +101,57 @@ const getUsers = asyncHandler( async(req,res)=>{
     }
 })
 
+const removeUser = asyncHandler(async(req, res)=>{
+    const user = await Users.findById(req.params.id)
+    if(user){
+        await user.deleteOne()
+        res.status(200).json({Message: "user was removed"})
+    }else{
+        res.status(400)
+        throw new Error("user was not found")
+    }
+})
+
+const getUserById = asyncHandler( async(req, res)=>{
+    const user = await Users.findById(req.params.id) 
+    if(user){
+        res.json(user)
+    }else{
+        res.status(400)
+        throw new Error("NO user was found")
+    }
+})
+
+const adminUpdateUser = asyncHandler( async(req, res)=>{
+    const user = await Users.findById(req.params.id).select("-password")
+
+    if(user){
+        user.name = req.body.name || user.name
+        user.email = req.body.email || user.email
+        user.isAdmin = req.body.isAdmin 
+
+        const updateUser = await user.save()
+
+        if(updateUser){
+            res.status(200).json({
+                name: updateUser.name,
+                email: updateUser.email,
+                isAdmin: updateUser.isAdmin
+            })
+
+        }else{
+            res.status(400)
+            throw new Error("Change NOt save")
+        }
+    }
+})
 export {
     userAuth,
     getUserProfile,
     registerUser, 
     updateUser, 
-    getUsers
+    getUsers,
+    removeUser,
+    adminUpdateUser,
+    getUserById
 }

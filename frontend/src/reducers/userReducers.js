@@ -121,3 +121,28 @@ export const removeUserReducer = (state={}, action)=>{
             return state
     }
 }
+
+export const AdminUpdateUserReducer = (state={ user:{}}, action)=>{
+    switch(action.type){
+        case "ADMIN_UPDATE_USER_REQUEST":
+            return{
+                loading: true
+            }
+        case "ADMIN_UPDATE_USER_SUCCESS":
+            return{
+                loading:false,
+                user: action.payload,
+                success: true
+            }
+        case "AMDIN_UPDATE_USER_FAIL":
+            return{
+                loading:false,
+                error: action.payload
+            }
+        case "ADMIN_UPDATE_USER_RESET":
+            return {user :[]}
+        default:
+            return state
+    }    
+}
+

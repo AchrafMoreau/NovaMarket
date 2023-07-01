@@ -184,3 +184,36 @@ export const removingUser = (id)=> async(dispatch, getState)=>{
         })
     }
 }
+
+export const adminUpdateUser = (user)=> async(dispatch, getState)=>{
+    try{
+        dispatch({
+            type:"ADMIN_UPDATE_USER_REQUEST"
+        })
+
+        const {userLogin:{userInfo}} = getState()
+        const config = {
+            headers:{
+                "Content-Type": "application/json",
+                authorization: `Token ${userInfo.token}`
+            }
+        }
+
+        const { data } = await axios.put(`http://localhost:3000/api/user/${user.id}`, user, config)
+
+        dispatch({
+            type:'ADMIN_UPDATE_USER_SUCCESS',
+            payload:data
+        })
+        dispatch({
+            type: "USER_UPDATE_SUCCESS",
+            payload: data
+        })
+
+    }catch(err){
+        dispatch({
+            type: "AMDIN_UPDATE_USER_FAIL",
+            payload: err.response && err.response.data.message ? err.response.data.message : err.message
+        }) 
+    }
+}

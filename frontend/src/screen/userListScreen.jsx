@@ -47,7 +47,7 @@ export const UserListScreen = () => {
                                     <td>{elm.email}</td>
                                     <td>{elm.isAdmin ? <i className='fa-solid fa-check' style={{color:"green"}}></i> : <i className='fa-solid fa-xmark'style={{color:"red"}}></i>}</td>
                                     <td>
-                                        <Link to={`/user/${elm._id}/edit`}>
+                                        <Link to={`/admin/user/${elm._id}/edit`}>
                                             <button className='btn btn-sm btn-light'>
                                                 <i className='fa-solid fa-edit'></i>
                                             </button>
