@@ -109,7 +109,6 @@ export const UserEdietScreen = () => {
                                     <button className='btn btn-primary' >Update</button>
                                 </div>
                             </div>
-                            =
                         </form>
                     }
                 </div>}

@@ -3,7 +3,7 @@ import Product from "../Models/productModel.js";
 
 
 const getAllProducts = asyncHandler( async(req, res)=>{
-    const allproduct = await Product.find({})
+    const allproduct = await Product.find({}).sort({createdAt: "desc"})
     res.json(allproduct)
 })
 
@@ -41,9 +41,10 @@ const createProduct = asyncHandler(async(req, res)=>{
         price: 0,
         countInStock: 0,
     })
+    
     const created = await product.save()
     if(created){
-        res.status(200).json(product)
+        res.status(200).json({message:"Product was Created"})
 
     }
 })

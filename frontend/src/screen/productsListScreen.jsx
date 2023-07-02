@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllusersList } from '../actions/userActions'
 import { Link, useParams } from 'react-router-dom'
 import { removingUser } from '../actions/userActions'
-import { adminDeleteProduct, producstList } from '../actions/productActions'
+import { adminAddingProduct, adminDeleteProduct, producstList } from '../actions/productActions'
 
 export const ProductListScreen = () => {
 
@@ -20,19 +20,21 @@ export const ProductListScreen = () => {
     const userLogin = useSelector(state=> state.userLogin)
     const { userInfo } = userLogin
     
+    const addProduct = useSelector(state=> state.addProduct)
+    const { success:prodSuccess, error:prodErr, loading:prodLoading } = addProduct
+
     useEffect(()=>{
         if(userInfo && userInfo.isAdmin)
         dispatch(producstList())
-    },[dispatch, success, userInfo])
+    },[dispatch, success, userInfo, prodSuccess])
 
     const supHandler = (id)=>{
         if(window.confirm("Are You Sure ...!")){
             dispatch(adminDeleteProduct(id))
-            
         }
     }
     const addProductHandler = ()=>{
-        //adding product
+        dispatch(adminAddingProduct())
     }
     return (
         <>
@@ -51,38 +53,38 @@ export const ProductListScreen = () => {
                 {supLoading ? <Loading /> : error ? <Message variant={"alert-danger"} children={error}/> :
                     loading ? <Loading /> : err ? <Message variant={'alert-danger'} children={err} /> : (
                         <table className="table table-dark table-striped table-sm">
-                        <thead>
-                            <tr>
-                            <th>Name</th>
-                            <th>PRICE</th>
-                            <th>CATEGORY</th>
-                            <th>BRAND</th>
-                            <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {products.map(elm => (
-                            <tr key={elm._id}>
-                                <td>{elm.name}</td>
-                                <td>$ {elm.price}</td>
-                                <td>{elm.category}</td>
-                                <td>{elm.brand}</td>
-                                <td>
-                                <Link to={`/admin/user/${elm._id}/edit`}>
-                                    <button className='btn btn-sm btn-light'>
-                                    <i className='fa-solid fa-edit'></i>
+                            <thead>
+                                <tr>
+                                <th>Name</th>
+                                <th>PRICE</th>
+                                <th>CATEGORY</th>
+                                <th>BRAND</th>
+                                <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {products.map(elm => (
+                                <tr key={elm._id}>
+                                    <td>{elm.name}</td>
+                                    <td>$ {elm.price}</td>
+                                    <td>{elm.category}</td>
+                                    <td>{elm.brand}</td>
+                                    <td>
+                                    <Link to={`/admin/product/${elm._id}/edit`}>
+                                        <button className='btn btn-sm btn-light'>
+                                        <i className='fa-solid fa-edit'></i>
+                                        </button>
+                                    </Link>
+                                    <button
+                                        onClick={() => supHandler(elm._id)}
+                                        style={{ backgroundColor: "#b5183c" }}
+                                        className='btn ms-3 btn-light btn-sm'>
+                                        <i className='fa-solid fa-trash'></i>
                                     </button>
-                                </Link>
-                                <button
-                                    onClick={() => supHandler(elm._id)}
-                                    style={{ backgroundColor: "#b5183c" }}
-                                    className='btn ms-3 btn-light btn-sm'>
-                                    <i className='fa-solid fa-trash'></i>
-                                </button>
-                                </td>
-                            </tr>
-                            ))}
-                        </tbody>
+                                    </td>
+                                </tr>
+                                ))}
+                            </tbody>
                         </table>
                     )
                     }

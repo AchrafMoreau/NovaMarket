@@ -15,6 +15,7 @@ import './App.css'
 import { Modlue3d } from './component/test3d'
 import { UserListScreen } from './screen/userListScreen'
 import { UserEdietScreen } from './screen/userEditeScreen'
+import { ProductEditeScreen } from './screen/productEditeScreen'
 import { ProductListScreen } from './screen/productsListScreen'
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
               <Route path="/admin/users" element={<UserListScreen />}  />
               <Route path="/admin/products" element={<ProductListScreen />}  />
               <Route path="/admin/user/:id/edit" element={<UserEdietScreen />}  />
+              <Route path="/admin/product/:id/edit" element={<ProductEditeScreen />}  />
               <Route path="/" element={<HomeScreen />} exact />
 
             </Routes>

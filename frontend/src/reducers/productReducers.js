@@ -44,3 +44,49 @@ export const deleteProductReducer = (state={}, action)=>{
             return state
     }
 }
+
+export const adminAddingProductReducer = (state={ product:{}}, action)=>{
+    switch(action.type){
+        case "ADMIN_ADDING_PRODUCT_REQUEST":
+            return{
+                loading:true
+            }
+        case "ADMIN_ADDING_PRODUCT_SUCCESS":
+            return{
+                loading:false,
+                product: action.payload,
+                success:true
+            }
+        case "ADMIN_ADDING_PRODUCT_FAIL":
+            return{
+                loading:false,
+                error: action.payload
+            }
+        default:
+            return state
+    }
+}
+
+export const adminModifyProductReducer = (state={product:{}}, action)=>{
+    switch(action.type){
+        case "ADMIN_MODIFY_PRODUCT_REQUEST":
+            return{
+                loading:true
+            }
+        case "ADMIN_MODIFY_PRODUCT_SUCCESS":
+            return{
+                loading:false,
+                product: action.payload,
+                success: true
+            }
+        case "ADMIN_MODIFY_PRODUCT_FAIL":
+            return{
+                loading:false,
+                error:action.payload
+            }
+        case "ADMIN_MODIFY_PRODUCT_RESER":
+            return {}
+        default:
+            return state
+    }
+}
