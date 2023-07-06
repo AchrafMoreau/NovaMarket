@@ -49,7 +49,7 @@ export const adminDeleteProduct = (id)=> async(dispatch, getState)=>{
         await axios.delete(`http://localhost:3000/api/product/${id}`, config)
 
         dispatch({
-            type:"DELETE_PRODUCT_SUCCESS"
+            type:"DELETE_PRODUCT_SUCCESS",
         })
 
     }catch(err){

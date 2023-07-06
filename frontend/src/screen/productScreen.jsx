@@ -38,8 +38,8 @@ const ProductScreen = () => {
                     ? <Message variant={'alert-danger'} children={err} />
                     : <div className="container">
                         <div className="row">
-                            <div className="col-md-6">
-                                <img src={product.image} alt="" className='img-fluid'/>
+                            <div className="col-md-6" style={{viewTransitionName: "myimg", contain:"layout"}} >
+                                <img src={product.image}  className='img-fluid' alt="" />
                             </div>
                             <div className="col-md-3">
                                 <ul className="list-group list-group-flush">

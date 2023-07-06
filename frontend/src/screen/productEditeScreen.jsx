@@ -5,6 +5,7 @@ import { adminUpdateUser, getUserDetails } from '../actions/userActions'
 import { Loading } from '../component/loading'
 import { Message } from '../component/error'
 import { ProductDetail, adminModifyProduct } from '../actions/productActions'
+import axios from 'axios'
 
 export const ProductEditeScreen = () => {
     
@@ -19,6 +20,7 @@ export const ProductEditeScreen = () => {
         description: "",
         countInStock: 0,
         price: 0,
+        uploading: false
     })
 
     const dispatch = useDispatch()
@@ -29,6 +31,8 @@ export const ProductEditeScreen = () => {
 
 
     useEffect(()=>{
+        // dispatch(ProductDetail(id))
+
         if(success){
             dispatch({
                 type:"ADMIN_MODIFY_PRODUCT_RESER"
@@ -51,6 +55,9 @@ export const ProductEditeScreen = () => {
         }
     },[product, dispatch, id, navigate, success])
 
+    useEffect(()=>{
+        dispatch(ProductDetail(id))
+    },[])
 
     const changeHandler = (e)=>{
         setValue((prev)=>({
@@ -64,6 +71,38 @@ export const ProductEditeScreen = () => {
         dispatch(adminModifyProduct({product: value, id}))
     }
 
+    const handleUpload = async(e)=>{
+        const file = e.target.files[0]
+        console.log(file)
+        const formData = new FormData();
+        formData.append("image", file)    
+        setValue((prevValues)=>({
+            ...prevValues,
+            uploading: true
+        }))
+
+        try{
+            const config = {
+                headers:{
+                    'Content-Type':"multipart/form-data"
+                }
+            }
+
+            const { data } = await axios.post(`http://localhost:3000/api/upload`, formData, config)
+
+            setValue((prevValues)=>({
+                ...prevValues,
+                image: data,
+                uploading: false
+            }))
+        }catch(err){
+            console.log(err)
+            setValue(preValues => ({
+                ...preValues,
+                uploading: false
+            }))
+        }
+    }
     return (
         <>
             <div className="container">
@@ -90,12 +129,34 @@ export const ProductEditeScreen = () => {
                                     <label htmlFor="brand" className="form-label">Brand: </label>
                                 </div>
                                 <div className="col-6">
-                                    <input type="brand"
+                                    <input type="text"
                                         name='brand'
                                         className='form-control'
                                         onChange={(e)=>changeHandler(e)}
                                         value={value.brand}
                                     />
+                                </div>
+                            </div>
+                            <div className="row mb-3">
+                                <div className="col-6">
+                                    <label htmlFor="image" className="form-label">Image: </label>
+                                </div>
+                                <div className="col-6">
+                                    <div className="col-md-8">
+                                        <input type="text"
+                                            name='image'
+                                            className='form-control'
+                                            onChange={(e)=>changeHandler(e)}
+                                            value={value.image}
+                                        />
+                                    </div>
+                                    <div className="col-md-4 mt-2">
+                                        <input type="file" 
+                                            name='upload'
+                                            onChange={handleUpload}
+                                        />
+                                        {value.uploading && <Loading />}
+                                    </div>
                                 </div>
                             </div>
                             <div className="row mb-3">
@@ -142,7 +203,7 @@ export const ProductEditeScreen = () => {
                                     <label htmlFor="category" className="form-label">category: </label>
                                 </div>
                                 <div className="col-6">
-                                    <input type="brand"
+                                    <input type="text"
                                         name='category'
                                         className='form-control'
                                         onChange={(e)=>changeHandler(e)}

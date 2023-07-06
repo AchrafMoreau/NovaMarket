@@ -26,11 +26,11 @@ const HomeScreen = ()=>{
                 <div className="row">
                     {loading 
                         ? <Loading />
-                        : err
+                        : err   
                         ? <Message variant={'alert-danger'} children={err} />
                         : products.map((elm, index)=>{
                             return(
-                                <div className="col-4" key={index}>
+                                <div className="col-3" key={index}>
                                     <Product element={elm} /> 
                                 </div>
                             )

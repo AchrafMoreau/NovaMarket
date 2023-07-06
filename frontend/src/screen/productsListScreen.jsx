@@ -3,13 +3,14 @@ import {Loading}  from "../component/loading"
 import { Message } from "../component/error"
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllusersList } from '../actions/userActions'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { removingUser } from '../actions/userActions'
 import { adminAddingProduct, adminDeleteProduct, producstList } from '../actions/productActions'
 
 export const ProductListScreen = () => {
 
 
+    const navigate = useNavigate("/")
     const dispatch = useDispatch()
     const productList = useSelector(state=> state.ProductList)
     const { products, err, loading } = productList 
@@ -21,12 +22,22 @@ export const ProductListScreen = () => {
     const { userInfo } = userLogin
     
     const addProduct = useSelector(state=> state.addProduct)
-    const { success:prodSuccess, error:prodErr, loading:prodLoading } = addProduct
+    const { success:prodSuccess, error:prodErr, loading:prodLoading, product:createdProd } = addProduct
 
     useEffect(()=>{
-        if(userInfo && userInfo.isAdmin)
-        dispatch(producstList())
-    },[dispatch, success, userInfo, prodSuccess])
+        dispatch({
+            type:"ADMIN_ADDING_PRODUCT_RESET"
+        })
+        if(!userInfo.isAdmin){
+            navigate("/login")
+        }
+
+        if(prodSuccess){
+            navigate(`/admin/product/${createdProd._id}/edit`)
+        }else{
+            dispatch(producstList())
+        }
+    },[dispatch, success, userInfo, prodSuccess, navigate])
 
     const supHandler = (id)=>{
         if(window.confirm("Are You Sure ...!")){
@@ -51,7 +62,7 @@ export const ProductListScreen = () => {
                 </div>
                 
                 {supLoading ? <Loading /> : error ? <Message variant={"alert-danger"} children={error}/> :
-                    loading ? <Loading /> : err ? <Message variant={'alert-danger'} children={err} /> : (
+                    loading || prodLoading? <Loading /> : err || prodErr ? <Message variant={'alert-danger'} children={err} /> : (
                         <table className="table table-dark table-striped table-sm">
                             <thead>
                                 <tr>

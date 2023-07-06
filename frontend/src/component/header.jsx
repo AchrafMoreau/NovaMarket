@@ -15,7 +15,7 @@ const Header = ()=>{
         location.reload()
     }
      return(
-        <nav className="navbar navbar-expand-lg bg-light">
+        <nav id="nav" className="navbar navbar-expand-lg bg-light">
             <div className="container-fluid">
                 <Link to="/" className="navbar-brand" >eCommerece</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,23 +24,16 @@ const Header = ()=>{
                 <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ms-auto">
                     
-                    <li className="nav-item">
-                        <Link to="/cart" className="nav-link" >
-                            <i className="fa-solid fa-cart-shopping"></i>
-                            cart
-                        </Link>
-                    </li>
+                    
                     { userInfo ? 
                     <li className="nav-link">
                         <div className="dropdown">
-                            <div className="dropdown-toggle" style={{cursor: "pointer"}} data-bs-toggle="dropdown" aria-expanded="false">
+                            <div id="name" className="dropdown-toggle" style={{cursor: "pointer"}} data-bs-toggle="dropdown" aria-expanded="false">
                                 <i className="fa-solid fa-user me-2"></i>
                                 {userInfo.name}
                             </div>
                             <ul className="dropdown-menu">
-                                <li className="dropdown-item">
-                                    <Link to='/profile'>Profiel</Link>
-                                </li>
+                                <Link className="dropdown-item" to='/profile'>Profiel</Link>
                                 
                                 <li className="dropdown-item"  onClick={logoutHandler}>
                                     Logout
@@ -57,25 +50,25 @@ const Header = ()=>{
                     </li>
                     }
                     {userInfo && userInfo.isAdmin && (
-                        <li className="nav-link ms-3 me-5">
+                        <li className="nav-link ms-3 me-2">
                             <div className="dropdown">
-                                <div className="dropdown-toggle" style={{cursor: "pointer"}} data-bs-toggle="dropdown" aria-expanded="false">
+                                <div id="admin" className="dropdown-toggle" style={{cursor: "pointer"}} data-bs-toggle="dropdown" aria-expanded="false">
                                     Admin
                                 </div>
                                 <ul className="dropdown-menu">
-                                    <li className="dropdown-item">
-                                        <Link to='/admin/users'>Users</Link>
-                                    </li>
-                                    <li className="dropdown-item">
-                                        <Link to='/admin/products'>Products</Link>
-                                    </li>
-                                    <li className="dropdown-item">
-                                        <Link to='/admin/orders'>Orders</Link>
-                                    </li>
+                                    <Link to='/admin/users' className="dropdown-item">Users</Link>
+                                    <Link to='/admin/products'className="dropdown-item">Products</Link>
+                                    <Link to='/admin/orders' className="dropdown-item">Orders</Link>
                                 </ul>
                             </div>
                         </li> 
                     )}
+                    <li  className="nav-item">
+                        <Link to="/cart" className="nav-link" id='cart' >
+                            <i className="fa-solid fa-cart-shopping me-2"></i>
+                            cart
+                        </Link>
+                    </li>
                 </ul>
                 </div>
             </div>

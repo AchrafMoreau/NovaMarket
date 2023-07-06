@@ -62,6 +62,8 @@ export const adminAddingProductReducer = (state={ product:{}}, action)=>{
                 loading:false,
                 error: action.payload
             }
+        case "ADMIN_ADDING_PRODUCT_RESET":
+            return { product:{}}
         default:
             return state
     }

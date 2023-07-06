@@ -11,7 +11,7 @@ import { ShippingAddress } from './screen/shippingScreen';
 import { PaymentMethods } from './screen/paymentScreen'
 import { PlaceOrder } from './screen/placeOrderScreen'
 import { AllOrdersScreen } from './screen/orderScreeen'
-import './App.css'
+import './style/homeStyle.css'
 import { Modlue3d } from './component/test3d'
 import { UserListScreen } from './screen/userListScreen'
 import { UserEdietScreen } from './screen/userEditeScreen'

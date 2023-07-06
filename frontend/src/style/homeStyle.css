@@ -1,0 +1,101 @@
+body{
+    /* background: #000000; */
+}
+#nav{
+    box-shadow: 0px 5px 10px #000000, inset 0px 10px 30px  #008ECC ;
+    margin: 10px 20px;
+    padding: 20px 10px;
+    background: linear-gradient(to bottom, #008ECC, rgb(0, 0, 0));
+    border-radius: 15px;
+    border: none;
+
+}
+#nav #name{
+    color: #fff;
+    transition: all .5s;
+}
+#nav #admin{
+    color: #fff;
+    transition: all .5s;
+}
+#nav #cart{
+    transition: all .5s;
+    color: #fff;
+}
+#nav #cart:hover,#nav #admin:hover, #nav #name:hover{
+    scale: .95;
+    color: #888;
+
+}
+.dropdown-menu{
+    color: #fff !important;
+    box-shadow: 0px 5px 10px #000000, inset 0px 10px 30px  #008ECC ;
+    margin: 10px 20px;
+    padding: 20px 10px;
+
+    
+    background: linear-gradient(to bottom, #008ECC, rgb(0, 0, 0));
+}
+.dropdown-menu li, .dropdown-menu a{
+    color: #fff !important;
+    text-decoration: none;
+    border-radius: 15px;
+    margin-bottom: 10px ;
+    background: #888;
+    transition: all .5s;
+}
+.dropdown-menu a:hover, .dropdown-menu li:hover{
+    background-color: #008ECC;
+    cursor: pointer;
+    scale: .95;
+}
+#cards{
+    background-color: #1a1a1a;
+    border-radius: 0px;
+    padding: 0px 0px !important;
+    transition: all .2s;
+}
+#cards:hover {
+    transform: scale(0.98);
+    border-radius: 20px;
+   }
+.card1{
+    background-image: linear-gradient(163deg, #008ecc 0%, yellow 100%);
+    border-radius: 20px;
+    transition: all .3s;
+}
+.card1:hover{
+    box-shadow: 0px 0px 30px 1px rgba(0, 143, 204, 0.589);
+}
+#cards .descrip{
+    font-size: .8rem ;
+}
+#cards .rating{
+    font-size: .9rem;
+    
+}
+#cards .price{
+    color: #008ECC;
+}
+#cards .card-title{
+    color: #fff !important;
+    margin-top: 5px;
+}
+*{
+    /* border: 1px solid red; */
+}
+
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #084cdf;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+    background: #0d45a5;
+}

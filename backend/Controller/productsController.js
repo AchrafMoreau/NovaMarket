@@ -44,7 +44,7 @@ const createProduct = asyncHandler(async(req, res)=>{
     
     const created = await product.save()
     if(created){
-        res.status(200).json({message:"Product was Created"})
+        res.status(200).json(created)
 
     }
 })
