@@ -73,7 +73,6 @@ export const ProductEditeScreen = () => {
 
     const handleUpload = async(e)=>{
         const file = e.target.files[0]
-        console.log(file)
         const formData = new FormData();
         formData.append("image", file)    
         setValue((prevValues)=>({

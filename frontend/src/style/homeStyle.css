@@ -3,10 +3,11 @@ body{
 }
 #nav{
     box-shadow: 0px 5px 10px #000000, inset 0px 10px 30px  #008ECC ;
-    margin: 10px 20px;
     padding: 20px 10px;
-    background: linear-gradient(to bottom, #008ECC, rgb(0, 0, 0));
-    border-radius: 15px;
+    height: 60px;
+    background: linear-gradient(to bottom, #008fcc37, rgb(0, 0, 0));
+    /* border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px; */
     border: none;
 
 }
@@ -23,10 +24,11 @@ body{
     color: #fff;
 }
 #nav #cart:hover,#nav #admin:hover, #nav #name:hover{
-    scale: .95;
-    color: #888;
+    scale: .98;
+    color: #072066;
 
 }
+
 .dropdown-menu{
     color: #fff !important;
     box-shadow: 0px 5px 10px #000000, inset 0px 10px 30px  #008ECC ;
@@ -81,9 +83,7 @@ body{
     color: #fff !important;
     margin-top: 5px;
 }
-*{
-    /* border: 1px solid red; */
-}
+
 
 input[type=file]::file-selector-button {
     margin-right: 20px;
@@ -99,3 +99,65 @@ input[type=file]::file-selector-button {
 input[type=file]::file-selector-button:hover {
     background: #0d45a5;
 }
+
+/* ----STYLING THE LOADER ---------- */
+#loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    animation: rotate_3922 1.2s linear infinite;
+    background-color: #9b59b6;
+    background-image: linear-gradient(#9b59b6, #84cdfa, #5ad1cd);
+  }
+  
+  #loader span {
+    position: absolute;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    background-color: #9b59b6;
+    background-image: linear-gradient(#9b59b6, #84cdfa, #5ad1cd);
+  }
+  
+  #loader span:nth-of-type(1) {
+    filter: blur(5px);
+  }
+  
+  #loader span:nth-of-type(2) {
+    filter: blur(10px);
+  }
+  
+  #loader span:nth-of-type(3) {
+    filter: blur(25px);
+  }
+  
+  #loader span:nth-of-type(4) {
+    filter: blur(50px);
+  }
+  
+  #loader::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    background-color: #ffffff;
+    border: solid 5px #ffffff;
+    border-radius: 50%;
+  }
+  
+  @keyframes rotate_3922 {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+  
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  
+

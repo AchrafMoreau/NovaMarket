@@ -46,74 +46,57 @@ export const RegisterScreen = () => {
         }
     }
 
-    console.log(values)
     return (
-        <div className='container mt-5 p-5 border rounded-1' style={{width:"50%"}}>
-            <h1 className='text-center mb-3'>Sign In</h1>
+        <div className='container'>
             {error && <Message variant={"alert-danger"} children={error} />}
             {values.message && <Message variant={"alert-danger"} children={values.message} />}
             {loading && <Loading />}
-            <form action=""  onSubmit={handleForm}>
-                <div className="row">
-                    <div className="col-12">
-                        <label htmlFor="name" className="form-label">Name: </label>
-                    </div>
-                    <div className="col-12">
-                        <input type="text"
+            <form action=""  id='form' onSubmit={handleForm}>
+                <p className='title'>Register</p>
+                <p class="message">Signup now and get full access to our app. </p>
+                <div id="flex">
+                    <label>
+                        <input required placeholder="" type="text" id="input"  
                             name='name'
-                            className='form-control'
                             onChange={(e)=>changeHandler(e)}
                             value={values.name}
                         />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12">
-                        <label htmlFor="email" className="form-label">Email: </label>
-                    </div>
-                    <div className="col-12">
-                        <input type="email"
-                            name='email'
-                            className='form-control'
-                            onChange={(e)=>changeHandler(e)}
-                            value={values.email}
-                        />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12">
-                        <label htmlFor="confirmPass" className="form-label">Confirm Password: </label>
-                    </div>
-                    <div className="col-12">
-                        <input type="password"
-                            name='confirmPass'
-                            className='form-control'
-                            onChange={(e)=>changeHandler(e)}
-                            value={values.confirmPass}
-                        />
-                    </div>
-                </div>
-                <div className="row mt-3">
-                    <div className="col-12">
-                        <label htmlFor="password" className="form-label">Password: </label>
-                    </div>
-                    <div className="col-12 ">
-                        <input type="password"
-                            name='password'
-                            className='form-control'
-                            onChange={(e)=>changeHandler(e)}
-                            value={values.password}
-                        />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12 mt-3 d-flex justify-content-end">
-                        <button className='btn btn-primary' >Register</button>
-                    </div>
-                </div>
-                <div className="row">
-                    I already have an account <Link to={redirect ? `/register?redirect=${redirect}` : `/register`}>Login</Link>
-                </div>
+                        <span>Firstname</span>
+                    </label>
+
+                    <label>
+                        <input required placeholder="" type="text" id="input"/>
+                        <span>Lastname</span>
+                    </label>
+                </div>  
+                <label>
+                    <input required placeholder="" type="email" id="input"
+                        name='email'
+                        onChange={(e)=>changeHandler(e)}
+                        value={values.email}
+                    />
+                    <span>Email</span>
+                </label> 
+                    
+                <label>
+                    <input required placeholder="" type="password" id="input"
+                        name='password'
+                        onChange={(e)=>changeHandler(e)}
+                        value={values.password}
+                    />
+                    <span>Password</span>
+                </label>
+                <label>
+                    <input required placeholder="" type="password" id="input"
+                        name='confirmPass'
+                        onChange={(e)=>changeHandler(e)}
+                        value={values.confirmPass}
+                    />
+                    <span>Confirm password</span>
+                </label>   
+                <button class="submit">Submit</button>
+                <p class="signin">Already have an acount ?<Link to={'/login'}>Login</Link> </p>
+                
             </form>
         </div>
     )

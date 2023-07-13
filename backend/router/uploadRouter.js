@@ -10,7 +10,8 @@ const storage = multer.diskStorage({
         cb(null, 'upload/');
     },
     filename: (req, file, cb) => {
-        const filename = `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`;
+        const imageName = file.originalname.split(".")[0]
+        const filename = `${imageName}_${Date.now()}${path.extname(file.originalname)}`;
         cb(null, filename);
     }
 });
@@ -36,7 +37,9 @@ const uplaod = multer({
 
 Route.post("/", uplaod.single('image'), (req, res)=>{
     const filePath = req.file.path.replace(/\\/g, "/");
-    res.json(`/${filePath}`);
+    // console.log(req.file)
+    // res.json(`/${filePath}`);
+    res.send(`/${filePath}`)
 })
 
 export default Route

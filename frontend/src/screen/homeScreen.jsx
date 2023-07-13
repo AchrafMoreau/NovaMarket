@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Product from "../component/product";
 import { useSelector, useDispatch } from "react-redux";
 import { producstList } from "../actions/productActions";
 import { Message } from "../component/error";
 import { Loading } from "../component/loading";
+import axios from "axios";
 
 
 const HomeScreen = ()=>{
@@ -12,18 +13,20 @@ const HomeScreen = ()=>{
     const ProductList = useSelector(state=> state.ProductList)
 
     const { loading, err, products} = ProductList
-
     useEffect(()=>{
 
         dispatch(producstList())
-
+        
     }, [dispatch])
 
 
     return(
         <>
-            <div className="container mt-5">
-                <div className="row">
+            <div style={{height:"100vh"}} className="container mt-3">
+                <Loading />
+            </div>
+            <div className="container-fluid">
+                <div className="row" style={{background:"black"}}>
                     {loading 
                         ? <Loading />
                         : err   

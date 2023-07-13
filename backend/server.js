@@ -24,11 +24,12 @@ app.use('/api/upload', uploadRouter)
 
             
 
-// making a folder eccessible
+// making a folder accessible
 const __dirname = path.resolve()
-app.use('/upload', express.static(path.join(__dirname, '/upload')))
+app.use("/upload",express.static(path.join(__dirname, '/upload')))
 
-app.use('/upload', express.static(path.join(__dirname, 'test/upload')));
+// app.use('/upload', express.static(path.join(__dirname, 'upload/')));
+console.log(path.join(__dirname, '/upload'))
 
 // Serve static files from the 'frontend' folder
 app.use(express.static(path.join(__dirname, 'frontend')));

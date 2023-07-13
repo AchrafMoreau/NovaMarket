@@ -17,7 +17,7 @@ const Header = ()=>{
      return(
         <nav id="nav" className="navbar navbar-expand-lg bg-light">
             <div className="container-fluid">
-                <Link to="/" className="navbar-brand" >eCommerece</Link>
+                <Link to="/" className="navbar-brand"id="nova" >NovaMarket</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
                 </button>
@@ -43,7 +43,7 @@ const Header = ()=>{
                     </li> : 
                     
                     <li className="nav-item">
-                        <Link to='/login' className="nav-link" href="#">
+                        <Link to='/login' className="nav-link"id="name" href="#">
                             <i className="fa-solid fa-user"></i>
                             sign in
                         </Link>
@@ -52,7 +52,7 @@ const Header = ()=>{
                     {userInfo && userInfo.isAdmin && (
                         <li className="nav-link ms-3 me-2">
                             <div className="dropdown">
-                                <div id="admin" className="dropdown-toggle" style={{cursor: "pointer"}} data-bs-toggle="dropdown" aria-expanded="false">
+                                <div id="admin" className="dropdown-toggle " style={{cursor: "pointer"}} data-bs-toggle="dropdown" aria-expanded="false">
                                     Admin
                                 </div>
                                 <ul className="dropdown-menu">
