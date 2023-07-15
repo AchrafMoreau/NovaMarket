@@ -109,51 +109,55 @@ export const ProductEditeScreen = () => {
                 <div className="row mb-3">
                     <h1 className='text-center my-3'>Update User</h1>
                     {loading ? <Loading /> : error ? <Message variant={'alert-danger'} children={error} /> :
-                        <form action="" method='POST'  onSubmit={handleForm}>
-                            <div className="row mb-3 my-4">
-                                <div className="col-6">
+                        <form action="" id='form' style={{background:"#333"}} method='POST'  onSubmit={handleForm}>
+                            <div className="row mb-3 my-4 border-1" >
+                                <div className="col-2">
                                     <label htmlFor="name" className="form-label">Name: </label>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-10" id='from-control'>
                                     <input type="text"
                                         name='name'
-                                        className='form-control'
+                                        className='input input-alt'
                                         onChange={(e)=>changeHandler(e)}
                                         value={value.name}
                                     />
+                                    <span class="input-border input-border-alt"></span>
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <div className="col-6">
                                     <label htmlFor="brand" className="form-label">Brand: </label>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-6" id='from-control'>
                                     <input type="text"
                                         name='brand'
-                                        className='form-control'
+                                        className='input input-alt'
                                         onChange={(e)=>changeHandler(e)}
                                         value={value.brand}
                                     />
+                                    <span class="input-border input-border-alt"></span>
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <div className="col-6">
                                     <label htmlFor="image" className="form-label">Image: </label>
                                 </div>
-                                <div className="col-6">
-                                    <div className="col-md-8">
+                                <div className="col-6" >
+                                    <div className="col-md-8" id='from-control'>
                                         <input type="text"
                                             name='image'
-                                            className='form-control'
+                                            className='input input-alt'
                                             onChange={(e)=>changeHandler(e)}
                                             value={value.image}
                                         />
+                                        <span class="input-border input-border-alt"></span>
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <input type="file" 
                                             name='upload'
                                             onChange={handleUpload}
                                         />
+                                        <span class="input-border input-border-alt"></span>
                                         {value.uploading && <Loading />}
                                     </div>
                                 </div>
@@ -162,52 +166,56 @@ export const ProductEditeScreen = () => {
                                 <div className="col-6">
                                     <label htmlFor="countInStock" className="form-label">Count In Stock: </label>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-6" id='from-control'>
                                     <input type="number"
                                         name='countInStock'
-                                        className='form-control'
+                                        className='input input-alt'
                                         onChange={(e)=>changeHandler(e)}
                                         value={value.countInStock}
                                     />
+                                    <span class="input-border input-border-alt"></span>
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <div className="col-6">
                                     <label htmlFor="price" className="form-label">Price: </label>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-6" id='from-control'>
                                     <input type="number"
                                         name='price'
-                                        className='form-control'
+                                        className='input input-alt'
                                         onChange={(e)=>changeHandler(e)}
                                         value={value.price}
                                     />
+                                    <span class="input-border input-border-alt"></span>
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <div className="col-6">
                                     <label htmlFor="description" className="form-label">Description: </label>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-6" id='from-control'>
                                     <input type="text"
                                         name='description'
-                                        className='form-control'
+                                        className='input input-alt'
                                         onChange={(e)=>changeHandler(e)}
                                         value={value.description}
                                     />
+                                    <span class="input-border input-border-alt"></span>
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <div className="col-6">
                                     <label htmlFor="category" className="form-label">category: </label>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-6" id='from-control'>
                                     <input type="text"
                                         name='category'
-                                        className='form-control'
+                                        className='input input-alt'
                                         onChange={(e)=>changeHandler(e)}
                                         value={value.category}
                                     />
+                                    <span class="input-border input-border-alt"></span>
                                 </div>
                             </div>
                             

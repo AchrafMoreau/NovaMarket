@@ -64,7 +64,7 @@ export const UserEdietScreen = () => {
                 <div className="row">
                     <h1 className='text-center my-3'>Update User</h1>
                     {loading ? <Loading /> : error ? <Message variant={'alert-danger'} children={error} /> :
-                        <form action="" method='POST'  onSubmit={handleForm}>
+                        <form action="" id='form' method='POST'  onSubmit={handleForm}>
                             <div className="row my-4">
                                 <div className="col-6">
                                     <label htmlFor="name" className="form-label">Name: </label>

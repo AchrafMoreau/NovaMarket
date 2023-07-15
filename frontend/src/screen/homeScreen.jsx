@@ -22,9 +22,7 @@ const HomeScreen = ()=>{
 
     return(
         <>
-            <div style={{height:"100vh"}} className="container mt-3">
-                <Loading />
-            </div>
+            
             <div className="container-fluid">
                 <div className="row" style={{background:"black"}}>
                     {loading 

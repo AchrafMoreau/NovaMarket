@@ -68,6 +68,29 @@ export const updateOrderReducer = (state= {}, action)=>{
     }
 }
 
+export const orderUpdateToDeliveredReducer = (state={}, action)=>{
+    switch(action.type){
+        case "ORDER_UPDATE_DELIVERED_REQUEST":
+            return{
+                loading:true
+            }
+        case "ORDER_UPDATE_DELIVERED_SUCCESS":
+            return{
+                loading:false,
+                success:true
+            }
+        case "ORDER_UPDATE_DELIVERED_FAIL":
+            return{
+                loading:false,
+                error:action.payload
+            }
+        case "ORDER_UPDATE_DELIVERED_RESET":
+            return {}
+        default:
+            return state
+    }
+}
+
 export const getAllUserOrderReducer = (state={orderList:[]}, action)=>{
     switch(action.type){
         case "ORDER_LIST_USER_REQUEST":
@@ -86,6 +109,24 @@ export const getAllUserOrderReducer = (state={orderList:[]}, action)=>{
             }
         case "ORDER_LIST_USER_RESET":
             return { orderList: [] }
+        default:
+            return state
+    }
+}
+export const orderListReducer = (state={ order:[]}, action)=>{
+    switch(action.type){
+        case "ORDER_LIST_REQUEST":
+            return{
+                loading:true
+            }
+        case "ORDER_LIST_SUCCESS":
+            return{
+                loading:false, order: action.payload, success:true
+            }
+        case "ORDER_LIST_FAIL":
+            return{
+                loading:false, error:action.payload
+            }
         default:
             return state
     }

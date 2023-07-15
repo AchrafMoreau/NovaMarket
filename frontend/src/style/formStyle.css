@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 350px;
+    max-width: 100%;
     min-width: 40%;
     background-color: #fff;
     padding: 20px;
@@ -128,4 +128,66 @@
       transform: scale(1.8);
       opacity: 0;
     }
+  }
+
+  /*  ----------------inputs STYLE ----------------- */
+
+  .input {
+    color: #fff;
+    font-size: 0.9rem;
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    border-bottom: 1px solid red;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all .5s;
+  }
+  
+  .input-border {
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+  
+  .input:focus {
+    outline: none !important;
+    background: rgba(255, 255, 255, 0.759);
+    border: none !important;
+    background: #eee;
+    color: #000;
+  }
+  
+  .input:focus + .input-border {
+    width: 97%;
+    margin-left: 10px;
+  }
+  
+  #from-control {
+    position: relative;
+    --width-of-input: 300px;
+  }
+  
+  .input-alt {
+    font-size: 1.2rem;
+    padding-inline: 1em;
+    padding-block: 0.8em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .input-border-alt {
+    height: 3px;
+    margin-left: 12px;
+    background: linear-gradient(90deg, #FF6464 0%, #FFBF59 50%, #47C9FF 100%);
+    transition: width 0.4s cubic-bezier(0.42, 0, 0.58, 1.00);
+  }
+  
+  .input-alt:focus + .input-border-alt {
+    width: 97%;
+    margin-left: 10px;
   }

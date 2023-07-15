@@ -1,3 +1,124 @@
 a{
     text-decoration: none !important;
 }
+
+
+/* header style */
+.nav__cont {
+    position: fixed;
+    width: 60px;
+    top: 0;
+    height: 100vh;
+    z-index: 100;
+    background-color: #202020;
+    overflow: hidden;
+    transition: width 0.3s ease;
+    cursor: pointer;
+    box-shadow: 4px 7px 10px rgba(0, 0, 0, 0.4);
+  }
+  
+  .nav__cont:hover {
+    width: 250px;
+  }
+  
+  @media screen and (min-width: 600px) {
+    /* .nav__cont {
+      width: px;
+    } */
+  }
+  
+  .nav {
+    list-style-type: none;
+    color: white;
+    display: flex;
+    flex-direction:column ;
+  }
+  
+  .nav:first-child {
+    padding-top: 1.5rem;
+  }
+  
+  .nav-items {
+    padding-bottom: 3rem;
+    padding-top: 10px;
+    font-family: 'roboto';
+    border-bottom: 2px solid rgb(255, 255, 255);
+
+  }
+  
+  
+  .nav-items .small Link {
+    position: relative;
+    display: block;
+    top: -35px;
+    padding-left: 25px;
+    padding-right: 15px;
+    transition: all 0.3s ease;
+    margin-left: 25px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: white;
+    font-family: 'roboto';
+    font-weight: 100;
+    font-size: 1.35em;
+  }
+  
+  .nav-items .small Link::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 2px;
+    background: radial-gradient(circle at 94.02% 88.03%, #54a4ff, transparent 100%);
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+  
+  .nav-items:hover .small:hover Link::after {
+    opacity: 1;
+  }
+  
+.big{
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    width: fit-content;
+    /* border: 1px solid red; */
+}
+.big i{
+    margin-inline: 20px;
+}
+.nav-items:first-child{
+    border-top: 2px solid #fff;
+}
+.small{
+    /* border: 1px solid red; */
+    color: #ddd;
+    margin-left: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 1rem;
+
+}
+.nav-home{
+    color: var(--primary-color);
+    font-weight: bold;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 1.3rem;
+    font-family: Arial;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+.nav-home i{
+    margin-inline: 20px;
+    
+}

@@ -50,8 +50,8 @@ const updateOrderToPaid = asyncHandler( async(req, res)=>{
     const order = await Order.findById(req.params.id)
 
     if(order){
-        order.isPaid = true,
-        order.paidAt = Date.now(),
+        order.isPaid = true
+        order.paidAt = Date.now()
         order.paymentResult = {
             id: req.body.id,
             status: req.body.status,
@@ -67,9 +67,33 @@ const updateOrderToPaid = asyncHandler( async(req, res)=>{
     }
 })
 
+const updateOrderToDelivered = asyncHandler( async(req, res)=>{
+    const order = await Order.findById(req.params.id)
+
+    if(order){
+        order.deliverdAt = Date.now()
+        order.isDeliverd = true
+
+        const updateOrder = await order.save()
+        res.status(200).json(updateOrder)
+    }else{
+        res.status(400)
+        throw new Error("Order Not Found...!")
+    }
+})
 
 const getAllUserOrder = asyncHandler( async(req, res)=>{
     const orders = await Order.find({user: req.user._id})
+    if(orders){
+        res.status(200).json(orders)
+    }else{
+        res.status(400)
+        throw new Error("User Was Not Found")
+    }
+})
+
+const orderList = asyncHandler( async(req, res)=>{
+    const orders = await Order.find({}).populate("user", 'id name')
     if(orders){
         res.status(200).json(orders)
     }else{
@@ -81,5 +105,7 @@ export {
     addOrderItems,
     getAllOrder,
     updateOrderToPaid,
-    getAllUserOrder
+    updateOrderToDelivered,
+    getAllUserOrder,
+    orderList,
 }

@@ -1,11 +1,24 @@
 body{
     /* background: #000000; */
 }
+tbody tr{
+  border-bottom: 3px solid white;
+}
+
+:root{
+  --primary-color: rgb(56, 90, 194);
+  --royalblue: royalblue;
+
+}
+#sideNav{
+  display: flex;
+  flex-direction: column;
+}
 #nav{
-    box-shadow: 0px 5px 10px #000000, inset 0px 10px 30px  #008ECC ;
+    box-shadow: 0px 5px 10px;
     padding: 20px 10px;
-    height: 60px;
-    background: linear-gradient(to bottom, #008fcc37, rgb(0, 0, 0));
+    min-height: 60px;
+    background: var(--royalblue) !important;
     /* border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px; */
     border: none;
@@ -25,29 +38,27 @@ body{
 }
 #nav #cart:hover,#nav #admin:hover, #nav #name:hover{
     scale: .98;
-    color: #072066;
+    color: var(--primary-color);
 
 }
 
 .dropdown-menu{
     color: #fff !important;
-    box-shadow: 0px 5px 10px #000000, inset 0px 10px 30px  #008ECC ;
-    margin: 10px 20px;
+    box-shadow: 0px 2px 10px #000000;
+    /* margin: 5px 10px; */
     padding: 20px 10px;
-
-    
-    background: linear-gradient(to bottom, #008ECC, rgb(0, 0, 0));
+    background: var(--royalblue);
 }
 .dropdown-menu li, .dropdown-menu a{
     color: #fff !important;
     text-decoration: none;
     border-radius: 15px;
-    margin-bottom: 10px ;
+    margin-bottom: 5px ;
     background: #888;
     transition: all .5s;
 }
 .dropdown-menu a:hover, .dropdown-menu li:hover{
-    background-color: #008ECC;
+    background-color : var(--primary-color);
     cursor: pointer;
     scale: .95;
 }
@@ -101,63 +112,94 @@ input[type=file]::file-selector-button:hover {
 }
 
 /* ----STYLING THE LOADER ---------- */
-#loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+.wrapper {
+  width: 200px;
+  height: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #000;
+  left: 15%;
+  transform-origin: 50%;
+  animation: circle7124 .5s alternate infinite ease;
+}
+
+@keyframes circle7124 {
+  0% {
+    top: 60px;
+    height: 5px;
+    border-radius: 50px 50px 25px 25px;
+    transform: scaleX(1.7);
+  }
+
+  40% {
+    height: 20px;
     border-radius: 50%;
-    height: 40px;
-    width: 40px;
-    animation: rotate_3922 1.2s linear infinite;
-    background-color: #9b59b6;
-    background-image: linear-gradient(#9b59b6, #84cdfa, #5ad1cd);
+    transform: scaleX(1);
   }
-  
-  #loader span {
-    position: absolute;
-    border-radius: 50%;
-    height: 100%;
-    width: 100%;
-    background-color: #9b59b6;
-    background-image: linear-gradient(#9b59b6, #84cdfa, #5ad1cd);
+
+  100% {
+    top: 0%;
   }
-  
-  #loader span:nth-of-type(1) {
-    filter: blur(5px);
+}
+
+.circle:nth-child(2) {
+  left: 45%;
+  animation-delay: .2s;
+}
+
+.circle:nth-child(3) {
+  left: auto;
+  right: 15%;
+  animation-delay: .3s;
+}
+
+.shadow {
+  width: 20px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.9);
+  position: absolute;
+  top: 62px;
+  transform-origin: 50%;
+  z-index: -1;
+  left: 15%;
+  filter: blur(1px);
+  animation: shadow046 .5s alternate infinite ease;
+}
+
+@keyframes shadow046 {
+  0% {
+    transform: scaleX(1.5);
   }
-  
-  #loader span:nth-of-type(2) {
-    filter: blur(10px);
+
+  40% {
+    transform: scaleX(1);
+    opacity: .7;
   }
-  
-  #loader span:nth-of-type(3) {
-    filter: blur(25px);
+
+  100% {
+    transform: scaleX(.2);
+    opacity: .4;
   }
-  
-  #loader span:nth-of-type(4) {
-    filter: blur(50px);
-  }
-  
-  #loader::after {
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    background-color: #ffffff;
-    border: solid 5px #ffffff;
-    border-radius: 50%;
-  }
-  
-  @keyframes rotate_3922 {
-    from {
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-  
-    to {
-      transform: translate(-50%, -50%) rotate(360deg);
-    }
-  }
+}
+
+.shadow:nth-child(4) {
+  left: 45%;
+  animation-delay: .2s
+}
+
+.shadow:nth-child(5) {
+  left: auto;
+  right: 15%;
+  animation-delay: .3s;
+}
+
   
 
