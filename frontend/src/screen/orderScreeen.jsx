@@ -61,6 +61,9 @@ export const AllOrdersScreen = () => {
 
     useEffect(()=>{
         dispatch(getAllOrder(id))
+        dispatch({
+            type:"CART_RESET"
+        })
     },[id])
     
 

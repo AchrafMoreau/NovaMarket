@@ -14,7 +14,6 @@ import { AllOrdersScreen } from './screen/orderScreeen'
 import './style/homeStyle.css'
 import './style/formStyle.css'
 import "./App.css"
-import { Modlue3d } from './component/test3d'
 import { UserListScreen } from './screen/userListScreen'
 import { UserEdietScreen } from './screen/userEditeScreen'
 import { ProductEditeScreen } from './screen/productEditeScreen'

@@ -41,6 +41,7 @@ export const ProfileScreen = () => {
 
     const orderUserList = useSelector(state=> state.orderUserList)
     const { loading:orderLoading, error: orderError, orderList} = orderUserList
+    console.log(orderList)
     useEffect(()=>{
         if(!userInfo){
             navigate('/login')
@@ -58,6 +59,9 @@ export const ProfileScreen = () => {
         }
     },[dispatch, user, userInfo, navigate])
 
+    useEffect(()=>{
+        dispatch(userOrders())
+    },[])
 
     const handleForm = (e)=>{
         e.preventDefault()

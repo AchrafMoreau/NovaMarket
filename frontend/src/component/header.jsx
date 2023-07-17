@@ -33,7 +33,7 @@ const Header = ()=>{
                                 {userInfo.name}
                             </div>
                             <ul className="dropdown-menu">
-                                <Link className="dropdown-item" to='/profile'>Profiel</Link>
+                                <Link className="dropdown-item" to='/profile'>Profile</Link>
                                 
                                 <li className="dropdown-item"  onClick={logoutHandler}>
                                     Logout

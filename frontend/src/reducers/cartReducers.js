@@ -36,6 +36,11 @@ export const cartReducer = (state={ cartItems : [], shippingAddress: {} }, actio
                 ...state,
                 paymentMethod: action.payload
             }
+        case "CART_RESET":
+            return{
+                cartItems:[],
+                shippingAddress: {}
+            }
         default:
             return state
     }
