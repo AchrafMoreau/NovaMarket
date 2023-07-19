@@ -53,10 +53,10 @@ export const PlaceOrder = () => {
     }
 
     return (
-        <div className="container">
+        <div className="container py-5">
             <CheckoutSteps step1 step2 step3 step4/>
             {loading && <Loading />}
-            <div className="row text-center mt-3">
+            <div className="row text-center my-5">
                 <h1>Place order</h1>
             </div>
             <div className="row">

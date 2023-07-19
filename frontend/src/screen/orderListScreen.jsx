@@ -31,28 +31,28 @@ export const OrderListScreen = () => {
                 </div>
 
                 {loading ? <Loading /> : error ? <Message variant={'alert-danger'} children={error} /> : 
-                    <table className="table table-dark table-striped table-sm">
+                    <table className="table table-dark table-striped ">
                         <thead>
                             <tr >
-                                <th>USER</th>
-                                <th>DATE</th>
-                                <th>TOTAL</th>
-                                <th>PAID</th>
-                                <th>DELIVRED</th>
+                                <th><h3>USER</h3></th>
+                                <th><h3>DATE</h3></th>
+                                <th><h3>TOTAL</h3></th>
+                                <th><h3>PAID</h3></th>
+                                <th><h3>DELIVRED</h3></th>
                             </tr>
                         </thead>
-                        <tbody className='text-center'>
+                        <tbody >
                             {order.map(elm => (
                             <tr  key={elm._id}>
                                 <td>{elm.user.name}</td>
                                 <td>{elm.createdAt.substring(1,10)}</td>
                                 <td>$ {elm.totalPrice}</td>
                                 <td>{elm.isPaid ? 
-                                    elm.paidAt ? elm.paidAt.substring(0,10) : <i className='fa-solid fa-check' style={{color:"green"}}></i>   
+                                    elm.paidAt ? <p style={{color:"green"}}>{elm.paidAt.substring(0,10)}</p> : <i className='fa-solid fa-check' style={{color:"green"}}></i>   
                                     : <i className='fa-solid fa-xmark'style={{color:"red"}}></i>}
                                 </td>
                                 <td>{elm.isDeliverd ? 
-                                    elm.deliverdAt ? elm.deliverdAt.substring(0,10) : <i className='fa-solid fa-check' style={{color:"green"}}></i> 
+                                    elm.deliverdAt ? <p style={{color:"green"}}>{elm.deliverdAt.substring(0,10)}</p> : <i className='fa-solid fa-check' style={{color:"green"}}></i> 
                                     : <i className='fa-solid fa-xmark'style={{color:"red"}}></i>}</td>
                                 <td>
                                 <Link to={`/order/${elm._id}`}>

@@ -36,7 +36,7 @@ const Footer = ()=>{
                 </div>
                 <div className="row">
                     <div className="copyright">
-                        <p>Copyright © 2022 All Rights Reserved by IPTV.</p>
+                        <p>Copyright © 2022 All Rights Reserved by NovaMarket.</p>
                     </div>
                 </div>
                 

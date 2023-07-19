@@ -50,12 +50,12 @@ export const ProductListScreen = () => {
     return (
         <>
             <div className="container">
-                <div className="row align-items-center ">
-                    <div className="col ">
+                <div className="row align-items-center mt-5">
+                    <div className="col-sm-6">
                         <h1>Products</h1>
                     </div>
-                    <div className="col text-end">
-                        <button className='my-3 btn btn-primary' onClick={addProductHandler}>
+                    <div className="col-sm-6 text-end">
+                        <button className='my-3 button' onClick={addProductHandler}>
                             <i className='fa-solid fa-plus'></i> Create Product
                         </button>
                     </div>
@@ -63,14 +63,13 @@ export const ProductListScreen = () => {
                 
                 {supLoading ? <Loading /> : error ? <Message variant={"alert-danger"} children={error}/> :
                     loading || prodLoading? <Loading /> : err || prodErr ? <Message variant={'alert-danger'} children={err} /> : (
-                        <table className="table table-dark table-striped table-sm">
+                        <table className="table table-dark table-striped mt-5">
                             <thead>
                                 <tr>
-                                <th>Name</th>
-                                <th>PRICE</th>
-                                <th>CATEGORY</th>
-                                <th>BRAND</th>
-                                <th></th>
+                                <th><h3>Name</h3></th>
+                                <th><h3>PRICE</h3></th>
+                                <th><h3>CATEGORY</h3></th>
+                                <th><h3>BRAND</h3></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,15 +80,15 @@ export const ProductListScreen = () => {
                                     <td>{elm.category}</td>
                                     <td>{elm.brand}</td>
                                     <td>
-                                    <Link to={`/admin/product/${elm._id}/edit`}>
-                                        <button className='btn btn-sm btn-light'>
+                                    <Link to={`/admin/product/${elm._id}/edit`} className='me-3'>
+                                        <button className='button' style={{boxShadow:"none"}} >
                                         <i className='fa-solid fa-edit'></i>
                                         </button>
                                     </Link>
                                     <button
                                         onClick={() => supHandler(elm._id)}
-                                        style={{ backgroundColor: "#b5183c" }}
-                                        className='btn ms-3 btn-light btn-sm'>
+                                        className='button'
+                                        style={{backgroundColor: "#b5183c", boxShadow:"none"}}>
                                         <i className='fa-solid fa-trash'></i>
                                     </button>
                                     </td>

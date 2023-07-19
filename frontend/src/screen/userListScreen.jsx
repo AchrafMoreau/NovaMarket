@@ -26,19 +26,19 @@ export const UserListScreen = () => {
     }
     return (
         <>
-            <div className="container">
+            <div className="container my-5">
+                <h1 className='mt-5'>List Of Users</h1>
                 {loading ? <Loading /> : error ? <Message variant={'alert-danger'} children={error} /> : (
-                    <table className="table table-dark table-striped table-sm ">
+                    <table className="table table-dark table-striped my-5 ">
                     <thead>
                         <tr >
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Admin</th>
-                            <th></th>
+                            <th><h3>ID</h3></th>
+                            <th><h3>Name</h3></th>
+                            <th><h3>Email</h3></th>
+                            <th><h3>Address</h3></th>
                         </tr>
                     </thead>
-                    <tbody >
+                    <tbody >    
                         {users.map(elm=>{
                             return(
                                 <tr key={elm._id}>
@@ -48,13 +48,13 @@ export const UserListScreen = () => {
                                     <td>{elm.isAdmin ? <i className='fa-solid fa-check' style={{color:"green"}}></i> : <i className='fa-solid fa-xmark'style={{color:"red"}}></i>}</td>
                                     <td>
                                         <Link to={`/admin/user/${elm._id}/edit`}>
-                                            <button className='btn btn-sm btn-light'>
+                                            <button className='btn btn-sm btn-light button'style={{boxShadow:"none"}} >
                                                 <i className='fa-solid fa-edit'></i>
                                             </button>
                                         </Link>
-                                        <button
-                                        onClick={()=>supHandler(elm._id)} style={{backgroundColor: "#b5183c"}}
-                                        className='btn ms-3 btn-light btn-sm'>
+                                        <button 
+                                        onClick={()=>supHandler(elm._id)} style={{backgroundColor: "#b5183c", boxShadow:"none"}}
+                                        className='btn ms-3 btn-light btn-sm button' >
                                             <i className='fa-solid fa-trash'></i>
                                         </button>
                                     </td>

@@ -77,13 +77,13 @@ export const AllOrdersScreen = () => {
 
     return loading ? <Loading /> : error ? <Message variant={"aler-danger"} children={error} /> : 
     <>
-        <div className="container">
+        <div className="container " style={{paddingTop:"6rem"}}>
                 <div className="row text-center mt-3">
                     <h1>Place order</h1>
                 </div>
-                <div className="row">
-                    <ul className="list-group list-group-flush mt-5 col-8">
-                        <li className="list-group-item">
+                <div className="row my-5">
+                    <ul className="list-group list-group-flush mt-5 col-md-8 " >
+                        <li className="list-group-item infoOrderCard">
                             <h2>Shipping</h2>
                             <div className="name">
                                 <strong>Name: </strong>{""}
@@ -100,7 +100,7 @@ export const AllOrdersScreen = () => {
                             </div>
                         </li>
 
-                        <li className="list-group-item">
+                        <li className="list-group-item infoOrderCard">
                             <h2>Payment</h2>
                             <strong>Method: </strong>
                             {order.paymentMethod}
@@ -108,23 +108,23 @@ export const AllOrdersScreen = () => {
                                 {order.isPaid ? <Message variant={"alert-success"} children={"Order Was Paid"}/> : <Message variant={"alert-danger"} children={"The order has not been paid yet"} />}
                             </div>
                         </li>
-                        <li className="list-group-item">
+                        <li className="list-group-item infoOrderCard">
                             <h2>Order Items</h2>
                             {order.orderItem.length === 0 ? <Message variant={"alert-danger"} children={"No Item... Your order Is Empty "}/> :
                             (
                                 <ul className="list-group  list-group-flush mt-5">
                                     {order.orderItem.map((elm, index)=>{
                                         return(
-                                            <li key={index} className="list-group-item">
-                                                <div className="row">
+                                            <li key={index} className="list-group-item infoProductCard">
+                                                <div className="row d-flex align-items-center">
                                                     <div className="col-md-2">
                                                         <img src={elm.image} alt={elm.name} className="img-fluid rounded" />
                                                     </div>
-                                                    <div className="col">
+                                                    <div className="col-md-6">
                                                         <Link to={`/product/${elm.product}`}>{elm.name}</Link>
                                                     </div>
                                                     <div className="col-md-4">
-                                                        {elm.qty} x ${elm.price} <br></br>= {(elm.qty * elm.price).toFixed(2)}
+                                                        <p className='price'>{elm.qty} x ${elm.price} <br></br>= ${(elm.qty * elm.price).toFixed(2)}</p>
                                                     </div>
                                                     
                                                 </div>
@@ -137,7 +137,7 @@ export const AllOrdersScreen = () => {
                         
                     </ul>
                     
-                    <ul className="list-group col-4">
+                    <ul className="list-group summaryCard col-md-4">
                         
                         <li className="list-group-item">
                             <h2>Order Summary</h2>

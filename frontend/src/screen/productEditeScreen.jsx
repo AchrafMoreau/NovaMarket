@@ -22,6 +22,15 @@ export const ProductEditeScreen = () => {
         price: 0,
         uploading: false
     })
+    const [changed, setChanged] = useState({
+        name: "var(--lipstik-color)",
+        brand: "var(--lipstik-color)",
+        category: "var(--lipstik-color)",
+        image: "var(--lipstik-color)",
+        description: "var(--lipstik-color)",
+        countInStock:" var(--lipstik-color)",
+        price: "var(--lipstik-color)",
+    })
 
     const dispatch = useDispatch()
     const productDetail = useSelector(state=> state.productDetail)
@@ -64,6 +73,10 @@ export const ProductEditeScreen = () => {
             ...prev,
             [e.target.name] : e.target.value
         }))
+        setChanged((prev)=>({
+            ...prev,
+            [e.target.name]: "var(--green-light)"
+        }))
     }
 
     const handleForm = (e)=>{
@@ -102,6 +115,7 @@ export const ProductEditeScreen = () => {
             }))
         }
     }
+    console.log(changed)
     return (
         <>
             <div className="container">
@@ -109,113 +123,120 @@ export const ProductEditeScreen = () => {
                 <div className="row mb-3">
                     <h1 className='text-center my-3'>Update User</h1>
                     {loading ? <Loading /> : error ? <Message variant={'alert-danger'} children={error} /> :
-                        <form action="" id='form' style={{background:"#333"}} method='POST'  onSubmit={handleForm}>
+                        <form action="" id='form' style={{width:"70%"}} method='POST'  onSubmit={handleForm}>
                             <div className="row mb-3 my-4 border-1" >
-                                <div className="col-2">
-                                    <label htmlFor="name" className="form-label">Name: </label>
+                                <div className="col-md-4">
+                                    <label htmlFor="name" className="form-label"><h4>Name: </h4></label>
                                 </div>
-                                <div className="col-10" id='from-control'>
+                                <div className="col-md-8" id='from-control'>
                                     <input type="text"
                                         name='name'
                                         className='input input-alt'
                                         onChange={(e)=>changeHandler(e)}
+                                        style={{borderColor: changed.name}}
                                         value={value.name}
                                     />
-                                    <span class="input-border input-border-alt"></span>
+                                    
                                 </div>
                             </div>
                             <div className="row mb-3">
-                                <div className="col-6">
-                                    <label htmlFor="brand" className="form-label">Brand: </label>
+                                <div className="col-md-4">
+                                    <label htmlFor="brand" className="form-label"><h4>Brand: </h4></label>
                                 </div>
-                                <div className="col-6" id='from-control'>
+                                <div className="col-md-8" id='from-control'>
                                     <input type="text"
                                         name='brand'
                                         className='input input-alt'
                                         onChange={(e)=>changeHandler(e)}
+                                        style={{borderColor: changed.brand}}
                                         value={value.brand}
                                     />
-                                    <span class="input-border input-border-alt"></span>
+                                    
                                 </div>
                             </div>
                             <div className="row mb-3">
-                                <div className="col-6">
-                                    <label htmlFor="image" className="form-label">Image: </label>
+                                <div className="col-md-4">
+                                    <label htmlFor="image" className="form-label"><h4>Image: </h4></label>
                                 </div>
-                                <div className="col-6" >
+                                <div className="col-md-8" >
                                     <div className="col-md-8" id='from-control'>
                                         <input type="text"
                                             name='image'
                                             className='input input-alt'
                                             onChange={(e)=>changeHandler(e)}
+                                            style={{borderColor: changed.image}}
                                             value={value.image}
                                         />
-                                        <span class="input-border input-border-alt"></span>
+                                        
                                     </div>
                                     <div className="col-md-4 mt-2">
-                                        <input type="file" 
+                                        <input type="file"
                                             name='upload'
                                             onChange={handleUpload}
                                         />
-                                        <span class="input-border input-border-alt"></span>
+                                        
                                         {value.uploading && <Loading />}
                                     </div>
                                 </div>
                             </div>
                             <div className="row mb-3">
-                                <div className="col-6">
-                                    <label htmlFor="countInStock" className="form-label">Count In Stock: </label>
+                                <div className="col-md-4">
+                                    <label htmlFor="countInStock" className="form-label"><h4>Count In Stock: </h4></label>
                                 </div>
-                                <div className="col-6" id='from-control'>
+                                <div className="col-md-8" id='from-control'>
                                     <input type="number"
                                         name='countInStock'
                                         className='input input-alt'
                                         onChange={(e)=>changeHandler(e)}
+                                        style={{borderColor: changed.countInStock}}
                                         value={value.countInStock}
                                     />
-                                    <span class="input-border input-border-alt"></span>
+                                    
                                 </div>
                             </div>
                             <div className="row mb-3">
-                                <div className="col-6">
-                                    <label htmlFor="price" className="form-label">Price: </label>
+                                <div className="col-md-4">
+                                    <label htmlFor="price" className="form-label"><h4>Price: </h4></label>
                                 </div>
-                                <div className="col-6" id='from-control'>
+                                <div className="col-md-8" id='from-control'>
                                     <input type="number"
                                         name='price'
                                         className='input input-alt'
                                         onChange={(e)=>changeHandler(e)}
+                                        style={{borderColor: changed.price}}
                                         value={value.price}
                                     />
-                                    <span class="input-border input-border-alt"></span>
+                                    
                                 </div>
                             </div>
                             <div className="row mb-3">
-                                <div className="col-6">
-                                    <label htmlFor="description" className="form-label">Description: </label>
+                                <div className="col-md-4">
+                                    <label htmlFor="description" className="form-label"><h4>Description: </h4></label>
                                 </div>
-                                <div className="col-6" id='from-control'>
+                                <div className="col-md-8" id='from-control'>
                                     <input type="text"
                                         name='description'
                                         className='input input-alt'
                                         onChange={(e)=>changeHandler(e)}
+                                        style={{borderColor: changed.description}}
                                         value={value.description}
                                     />
-                                    <span class="input-border input-border-alt"></span>
+                                    
                                 </div>
                             </div>
                             <div className="row mb-3">
-                                <div className="col-6">
-                                    <label htmlFor="category" className="form-label">category: </label>
+                                <div className="col-md-4">
+                                    <label htmlFor="category" className="form-label"><h4>category: </h4></label>
                                 </div>
-                                <div className="col-6" id='from-control'>
+                                <div className="col-md-8" id='from-control'>
                                     <input type="text"
                                         name='category'
                                         className='input input-alt'
                                         onChange={(e)=>changeHandler(e)}
+                                        style={{borderColor: changed.category}}
                                         value={value.category}
                                     />
-                                    <span class="input-border input-border-alt"></span>
+                                    
                                 </div>
                             </div>
                             
@@ -223,7 +244,7 @@ export const ProductEditeScreen = () => {
                             
                             <div className="row mb-3">
                                 <div className="col-12 mt-3 d-flex justify-content-end">
-                                    <button className='btn btn-primary' >Update</button>
+                                    <button className='edite' >Update</button>
                                 </div>
                             </div>
                         </form>

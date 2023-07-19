@@ -13,6 +13,7 @@ import { PlaceOrder } from './screen/placeOrderScreen'
 import { AllOrdersScreen } from './screen/orderScreeen'
 import './style/homeStyle.css'
 import './style/formStyle.css'
+import "./style/numeroStyle.css"
 import "./App.css"
 import { UserListScreen } from './screen/userListScreen'
 import { UserEdietScreen } from './screen/userEditeScreen'

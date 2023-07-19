@@ -47,11 +47,11 @@ export const RegisterScreen = () => {
     }
 
     return (
-        <div className='container'>
+        <div className='container py-5'>
             {error && <Message variant={"alert-danger"} children={error} />}
             {values.message && <Message variant={"alert-danger"} children={values.message} />}
             {loading && <Loading />}
-            <form action=""  id='form' onSubmit={handleForm}>
+            <form action=""  id='form'  style={{marginTop:"50px"}} onSubmit={handleForm}>
                 <p className='title'>Register</p>
                 <p class="message">Signup now and get full access to our app. </p>
                 <div id="flex">
@@ -94,7 +94,7 @@ export const RegisterScreen = () => {
                     />
                     <span>Confirm password</span>
                 </label>   
-                <button class="submit">Submit</button>
+                <button class="button">Sign In</button>
                 <p class="signin">Already have an acount ?<Link to={'/login'}>Login</Link> </p>
                 
             </form>

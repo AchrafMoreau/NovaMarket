@@ -82,17 +82,17 @@ export const ProfileScreen = () => {
 
     return (
         <>
-            <div className="row">
+            <div className="row px-5" style={{paddingBlock:"7rem"}}>
                 <div className="col-md-3 ">
                     <h1 className='text-center mb-3'>Profile</h1>
                     {error && <Message variant={"alert-danger"} children={error} />}
                     {success && <Message variant={"alert-success"} children={"Profile Updated"} />}
                     {values.message && <Message variant={"alert-danger"} children={values.message} />}
                     {loading && <Loading />}
-                    <form action=""  onSubmit={handleForm}>
+                    <form action="" id='form' style={{width:"100%",border:"1px solid rgb(225,142,149)", boxShadow:"0px 0px 20px rgb(227,199,178)"}} onSubmit={handleForm}>
                         <div className="row">
                             <div className="col-12">
-                                <label htmlFor="name" className="form-label">Name: </label>
+                                <label htmlFor="name" className="form-label">Name </label>
                             </div>
                             <div className="col-12">
                                 <input type="text"
@@ -105,7 +105,7 @@ export const ProfileScreen = () => {
                         </div>
                         <div className="row">
                             <div className="col-12">
-                                <label htmlFor="email" className="form-label">Email: </label>
+                                <label htmlFor="email" className="form-label">Email </label>
                             </div>
                             <div className="col-12">
                                 <input type="email"
@@ -118,11 +118,12 @@ export const ProfileScreen = () => {
                         </div>
                         <div className="row">
                             <div className="col-12">
-                                <label htmlFor="confirmPass" className="form-label">Confirm Password: </label>
+                                <label htmlFor="confirmPass" className="form-label">New Password </label>
                             </div>
                             <div className="col-12">
                                 <input type="password"
                                     name='confirmPass'
+                                    placeholder='new password'
                                     className='form-control'
                                     onChange={(e)=>changeHandler(e)}
                                     value={values.confirmPass}
@@ -131,11 +132,12 @@ export const ProfileScreen = () => {
                         </div>
                         <div className="row mt-3">
                             <div className="col-12">
-                                <label htmlFor="password" className="form-label">Password: </label>
+                                <label htmlFor="password" className="form-label">Confirm Password </label>
                             </div>
                             <div className="col-12 ">
                                 <input type="password"
                                     name='password'
+                                    placeholder='confirm the new password'
                                     className='form-control'
                                     onChange={(e)=>changeHandler(e)}
                                     value={values.password}
@@ -144,18 +146,18 @@ export const ProfileScreen = () => {
                         </div>
                         <div className="row">
                             <div className="col-12 mt-3 d-flex justify-content-end">
-                                <button className='btn btn-primary' >Register</button>
+                                <button className='button' >Change</button>
                             </div>
                         </div>
                         
                     </form>
                 </div>
                 <div className="col-md-9">
-                    <h1>Our Order</h1>
+                    <h1>My Orders</h1>
                     {orderLoading ? <Loading /> : orderError ? <Message variant={"alert-danger"} children={orderError} /> :
-                    (<table className="table table-dark table-striped">
+                    (<table className="table table-dark table-striped mt-5">
                             <thead>
-                                <tr>
+                                <tr id='tr'>
                                     <th>ID</th>
                                     <th>DATE</th>
                                     <th>TOTAL</th>
@@ -166,7 +168,7 @@ export const ProfileScreen = () => {
                             <tbody>
                                 {orderList.map((elm)=>{
                                     return(
-                                        <tr key={elm._id}>
+                                        <tr key={elm._id} id='tr'>
                                             <td>{elm._id.substring(1,10)}</td>
                                             <td>{elm.createdAt.substring(0, 10)}</td>
                                             <td>$ {elm.totalPrice}</td>
@@ -187,7 +189,6 @@ export const ProfileScreen = () => {
                     }
                 </div>
             </div>
-            
         </>
         
     )

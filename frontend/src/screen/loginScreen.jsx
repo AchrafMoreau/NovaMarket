@@ -31,10 +31,10 @@ export const LoginScreen = () => {
     }
 
     return (
-        <div className="container mt-3">
+        <div className="container py-5">
             {error && <Message variant='alert-danger' children={error}/>}
             {loading && <Loading />}
-            <form action="" method='POST' id='form' onSubmit={handleForm}>
+            <form action="" method='POST' id='form' style={{marginTop:"50px"}} onSubmit={handleForm}>
                 <p className='title'>Sign In</p>
                 <label>
                     <input type="email"
@@ -58,7 +58,7 @@ export const LoginScreen = () => {
                     <span>Password</span>
                 </label>
                     
-                <button class="submit">Submit</button>
+                <button class="button">LogIn</button>
                 <p class="signin">New Customer <Link to={redirect ? `/register?redirect=${redirect}` : `/register`}>Register</Link> </p>
                 
                 

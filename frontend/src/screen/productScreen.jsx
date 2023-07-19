@@ -26,23 +26,29 @@ const ProductScreen = () => {
         dispatch(ProductDetail(id))
     },[dispatch])
 
+    const handleQty = ()=>{
+        console.log("we enterd", qty)
+        setQty(prev => prev = prev + 1)
+    }
     return (
         <>
+        <div className="container" style={{paddingTop:"7rem"}}>
             <Link to="/" >
-                <button className='btn btn-secondary mb-4' type='button'>
-                    Go Back
+                <button className='button mb-4' type='button'>
+                    <i className='fa-solid fa-arrow-left'></i>
                 </button>
             </Link>
             {loading ? <Loading /> 
                     : err 
                     ? <Message variant={'alert-danger'} children={err} />
-                    : <div className="container">
+                    : <div className="container mt-3" style={{marginBottom:"5rem"}}>
                         <div className="row">
-                            <div className="col-md-6" style={{viewTransitionName: "myimg", contain:"layout"}} >
+                            
+                            <div className="col-md-5" >
                                 <img src={product.image}  className='img-fluid' alt="" />
                             </div>
-                            <div className="col-md-3">
-                                <ul className="list-group list-group-flush">
+                            <div className="col-md-4">
+                                <ul className="list-group list-group-flush infoProduct" >
                                     <li className="list-group-item">{product.name}</li>
                                     <li className="list-group-item"><Rating text={`${product.numReviews} Reviews`} value={product.rating} /></li>
                                     <div className="list-group-item">Price: ${product.price}</div>
@@ -50,7 +56,7 @@ const ProductScreen = () => {
                                 </ul>
                             </div>
                             <div className="col-md-3">
-                                <ul className="list-group ">
+                                <ul className="list-group summaryCard ">
                                     <li className="list-group-item">
                                         <div className="row">
                                             <div className="col-6">
@@ -77,22 +83,19 @@ const ProductScreen = () => {
                                                     Quantity:
                                                 </div>
                                                 <div className="col-12 mt-2">
-                                                    <select className="form-select" value={qty} onChange={(e)=> setQty(e.target.value)} >
-                                                        {[...Array(product.countInStock).keys()].map(elm=>{
-                                                            return(
-                                                                <option value={elm +1} key={elm + 1}>
-                                                                    {elm + 1}
-                                                                </option>
-                                                            )
-                                                        })}
-                                                    </select>
+                                                    <div class="quantity buttons_added">
+                                                        <input type="button" value="-" class="minus" onClick={()=>setQty(prev => prev > 1 ? prev = prev - 1 : prev = prev)}/>
+                                                        <input type="number" step="1" min="1" max="" name="quantity" value={qty} title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""/>
+                                                        <input type="button" value="+" class="plus" onClick={()=>setQty(prev => prev < product.countInStock ? prev = prev + 1 : prev = prev)}/>
+                                                    </div>
+                                                    
                                                     
                                                 </div>
                                             </div>
                                         </li>}
                                     <div className="list-group-item">
                                         <div className="row" >
-                                            <button className='btn btn-primary' type='button' onClick={addToCartHandler} disabled={product.countInStock === 0 ? true: false}>Add To Cart</button>
+                                            <button className='btn btn-primary buy' type='button' onClick={addToCartHandler} disabled={product.countInStock === 0 ? true: false}>Add To Cart</button>
                                         </div>
                                     </div>
                                 </ul>
@@ -100,6 +103,8 @@ const ProductScreen = () => {
                         </div>
                     </div>   
             }
+
+        </div>
         </>
     )
 }
