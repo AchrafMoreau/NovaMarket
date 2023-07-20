@@ -1,8 +1,43 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../actions/userActions";
+import { useState, useEffect } from "react";
 
 const Header = ()=>{
+
+    const [currentScroll, setCurrentScroll] = useState(window.scrollY);
+    const [downOrUp, setDownOrUp] = useState('');
+    const debounce = (func, delay) => {
+        let timerId;
+        return (...args) => {
+          if (timerId) {
+            clearTimeout(timerId);
+          }
+          timerId = setTimeout(() => {
+            func(...args);
+          }, delay);
+        };
+      };
+    
+    useEffect(() => {
+      const handleScroll = () => {
+        const newScrollPosition = window.scrollY;
+        if (newScrollPosition > currentScroll) {
+          setDownOrUp('scrollMynav');
+        } else {
+            setDownOrUp('');
+        }
+        setCurrentScroll(newScrollPosition);
+      };
+    
+      const debouncedHandleScroll = debounce(handleScroll, 0);
+    
+      window.addEventListener('scroll', debouncedHandleScroll);
+    
+      return () => {
+        window.removeEventListener('scroll', debouncedHandleScroll);
+      };
+    }, [currentScroll]);
 
     const navigate = useNavigate('/')
     const dispatch = useDispatch()
@@ -15,7 +50,7 @@ const Header = ()=>{
         location.reload()
     }
      return(
-        <nav id="nav" className="navbar navbar-expand-lg bg-light">
+        <nav id='nav' className={`navbar navbar-expand-lg  ${downOrUp}`}>
             <div className="container-fluid">
                 <Link to="/" className="navbar-brand"id="nova" >NovaMarket</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

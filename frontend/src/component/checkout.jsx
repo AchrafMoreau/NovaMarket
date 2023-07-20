@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 
 export const CheckoutSteps = ({step1, step2, step3, step4}) => {
   return (
-    <nav className='navbar navbar-expand-lg bg-light justify-content-cente'>
-      <ul className="navbar-nav m-auto">
+    <nav className='navbar'>
+      <ul className="m-auto"  id='checkout'>
         {step1 ? 
-          <li className="nav-item">
+          <li className="nav-item activeCheckout">
             <Link to={'/login'}>Sign In</Link>
           </li> :
           <li className="nav-item disable" >
@@ -15,7 +15,7 @@ export const CheckoutSteps = ({step1, step2, step3, step4}) => {
           </li>
         }
         {step2 ? 
-          <li className="nav-item">
+          <li className="nav-item activeCheckout">
             <Link to={'/shipping'}>Shipping</Link>
           </li> :
           <li className="nav-item disable" >
@@ -23,7 +23,7 @@ export const CheckoutSteps = ({step1, step2, step3, step4}) => {
           </li>
         }
         {step3 ? 
-          <li className="nav-item">
+          <li className="nav-item activeCheckout">
             <Link to={'/payment'}>Payment</Link>
           </li> :
           <li className="nav-item disable">
@@ -32,7 +32,7 @@ export const CheckoutSteps = ({step1, step2, step3, step4}) => {
           </li>
         }
         {step4 ? 
-          <li className="nav-item">
+          <li className="nav-item activeCheckout">
             <Link to={'/placeorder'}>Place Order</Link>
           </li> :
           <li className="nav-item disable"  >

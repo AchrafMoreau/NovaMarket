@@ -28,12 +28,12 @@ export const PaymentMethods = ()=>{
     }
     
     return(
-        <div className="container">
+        <div className="container" style={{paddingTop:"6rem"}}>
             <CheckoutSteps step1 step2 step3 />
-            <div className="row text-center mt-3">
+            <div className="row text-center mt-5">
                 <h1>Payment Method Form</h1>
             </div>
-            <form action="" className="mt-5" onSubmit={handleForm}>
+            <form action="" className="mb-5 mt-3" id="form" onSubmit={handleForm}>
 
                 <div className="form-group">
                     <legend className="form-lable">Select Method</legend>
@@ -59,7 +59,7 @@ export const PaymentMethods = ()=>{
                 </div>
                 <div className="row">
                     <div className="col-12 mt-3 d-flex justify-content-end">
-                        <button className='btn btn-primary' >Continue</button>
+                        <button className='button' >Continue</button>
                     </div>
                 </div>
             </form>

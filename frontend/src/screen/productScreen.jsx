@@ -94,8 +94,8 @@ const ProductScreen = () => {
                                             </div>
                                         </li>}
                                     <div className="list-group-item">
-                                        <div className="row" >
-                                            <button className='btn btn-primary buy' type='button' onClick={addToCartHandler} disabled={product.countInStock === 0 ? true: false}>Add To Cart</button>
+                                        <div className="row"style={{marginInline:"5px"}} >
+                                            <button className='checkoutBtn'type='button' onClick={addToCartHandler} disabled={product.countInStock === 0 ? true: false}>Add To Cart</button>
                                         </div>
                                     </div>
                                 </ul>

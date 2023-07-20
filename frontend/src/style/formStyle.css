@@ -236,3 +236,48 @@
 .edite:active {
   scale: 1;
 }
+
+/*  ----------- Cheskout Button ---------  */
+.checkoutBtn {
+  cursor: pointer;
+  width: 100%;
+  position: relative;
+  padding: 5px 25px;
+  font-size: 18px;
+  color: var(--lipstik-color);
+  border: 2px solid var(--light-color);
+  border-radius: 34px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden;
+  align-self: end;
+}
+
+.checkoutBtn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: var(--green-light);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.checkoutBtn:hover::before {
+  scale: 6.5;
+}
+
+.checkoutBtn:hover {
+  color: var(--SecondHair-color);
+  scale: 1.07;
+  box-shadow: 5px 5px 10px var(--light-color);
+}
+
+.checkoutBtn:active {
+  scale: 1;
+}

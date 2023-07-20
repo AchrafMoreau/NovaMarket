@@ -53,41 +53,41 @@ export const PlaceOrder = () => {
     }
 
     return (
-        <div className="container py-5">
+        <div className="container" style={{paddingTop:"6rem"}}>
             <CheckoutSteps step1 step2 step3 step4/>
             {loading && <Loading />}
             <div className="row text-center my-5">
                 <h1>Place order</h1>
             </div>
-            <div className="row">
+            <div className="row mb-5">
                 <ul className="list-group list-group-flush mt-5 col-8">
-                    <li className="list-group-item">
+                    <li className="list-group-item infoOrderCard">
                         <h2>Shipping</h2>
                         <strong>Address: </strong>
                         {cart.shippingAddress.address}, {cart.shippingAddress.city}, {cart.shippingAddress.ZIP}, {cart.shippingAddress.country}
                     </li>
-                    <li className="list-group-item">
+                    <li className="list-group-item infoOrderCard">
                         <h2>Payment</h2>
                         <strong>method: </strong>
                         {cart.paymentMethod}
                     </li>
-                    <li className="list-group-item">
+                    <li className="list-group-item infoOrderCard">
                         <h2>Order Items</h2>
                         {cart.cartItems.length === 0 ? <Message variant={"alert-danger"} children={"No Item... Your Cart Is Empty "}/> :
                         (
                             <ul className="list-group  list-group-flush mt-5">
                                 {cart.cartItems.map((elm, index)=>{
                                     return(
-                                        <li key={index} className="list-group-item">
-                                            <div className="row">
+                                        <li key={index} className="list-group-item infoProductCard">
+                                            <div className="row d-flex align-items-center">
                                                 <div className="col-md-2">
                                                     <img src={elm.image} alt={elm.name} className="img-fluid rounded" />
                                                 </div>
                                                 <div className="col">
                                                     <Link to={`/product/${elm.product}`}>{elm.name}</Link>
                                                 </div>
-                                                <div className="col-md-4">
-                                                    {elm.qty} x ${elm.price} <br></br>= {(elm.qty * elm.price).toFixed(2)}
+                                                <div className="col-md-4 price">
+                                                    {elm.qty} x ${elm.price} <br></br>= ${(elm.qty * elm.price).toFixed(2)}
                                                 </div>
                                                 
                                             </div>
@@ -100,7 +100,7 @@ export const PlaceOrder = () => {
                     
                 </ul>
                 
-                <ul className="list-group col-4">
+                <ul className="list-group col-4 summaryCard">
                     
                     <li className="list-group-item">
                         <h2>Order Summary</h2>
@@ -139,7 +139,7 @@ export const PlaceOrder = () => {
                     </li>
                     <li className="list-group-item ">
                         {error && <Message variant={'alert-danger'} children={error} />}
-                        <button  type='button' onClick={createOrderHandler} className='btn btn-primary w-100' >
+                        <button  type='button' onClick={createOrderHandler} className='checkoutBtn' >
                             Proceed To Checkout
                         </button>
                     </li>

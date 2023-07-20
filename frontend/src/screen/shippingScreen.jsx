@@ -12,6 +12,12 @@ export const ShippingAddress = () => {
     const dispatch = useDispatch()
 
     const navigate = useNavigate("/")
+    const [borderChange, setBorderChnage]= useState({
+        address: "",
+        city: "",
+        ZIP: "",
+        country: ""
+    })
     const [inputs, setInputs] = useState({
         address:shippingAddress.address,
         city: shippingAddress.city,
@@ -24,6 +30,10 @@ export const ShippingAddress = () => {
         setInputs((prev)=>({
             ...prev,
             [e.target.name] : e.target.value
+        }))
+        setBorderChnage((prev)=>({
+            ...prev,
+            [e.target.name]: "var(--green-light)"
         }))
     }
     const handleForm = (e)=>{
@@ -38,13 +48,13 @@ export const ShippingAddress = () => {
     console.log(inputs)
     return (
 
-        <div className="container">
+        <div className="container mb-5" style={{paddingTop:"6rem"}}>
             <CheckoutSteps step1 step2 />
-            <div className="row">
+            <div className="row mt-4">
                 <h1>Shipping Form</h1>
             </div>
             <div className="row" >
-                <form action=""  onSubmit={handleForm}>
+                <form action="" id='form' onSubmit={handleForm}>
                     <div className="row">
                         <div className="col-12">
                             <label htmlFor="address" className="form-label">Address: </label>
@@ -52,7 +62,8 @@ export const ShippingAddress = () => {
                         <div className="col-12">
                             <input type="text"city
                                 name='address'
-                                className='form-control'
+                                style={{color:"#000", borderColor: borderChange.address}}
+                                className='input'
                                 required={true}
                                 onChange={(e)=>changeHandler(e)}
                                 value={inputs.address}
@@ -66,7 +77,8 @@ export const ShippingAddress = () => {
                         <div className="col-12">
                             <input type="text"
                                 name='city'
-                                className='form-control'
+                                style={{color:"#000", borderColor: borderChange.city}}
+                                className='input'
                                 required={true}
                                 onChange={(e)=>changeHandler(e)}
                                 value={inputs.city}
@@ -80,7 +92,8 @@ export const ShippingAddress = () => {
                         <div className="col-12">
                             <input type="text"
                                 name='ZIP'
-                                className='form-control'
+                                style={{color:"#000", borderColor: borderChange.ZIP}}
+                                className='input'
                                 required={true}
                                 onChange={(e)=>changeHandler(e)}
                                 value={inputs.ZIP}
@@ -94,7 +107,8 @@ export const ShippingAddress = () => {
                         <div className="col-12 ">
                             <input type="text"
                                 name='country'
-                                className='form-control'
+                                style={{color:"#000", borderColor: borderChange.country}}
+                                className='input'
                                 required={true}
                                 onChange={(e)=>changeHandler(e)}
                                 value={inputs.country}
@@ -103,7 +117,7 @@ export const ShippingAddress = () => {
                     </div>
                     <div className="row">
                         <div className="col-12 mt-3 d-flex justify-content-end">
-                            <button className='btn btn-primary' >Payment</button>
+                            <button className='button' >Payment</button>
                         </div>
                     </div>
                     

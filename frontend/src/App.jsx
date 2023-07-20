@@ -30,7 +30,7 @@ function App() {
   return (
       <BrowserRouter>
         
-        <section className="content-fluid">
+        <section className="content-fluid" >
           <Routes>
             <Route path="/login" element={<><Header /><LoginScreen /><Footer /></>}  />
             <Route path="/placeorder" element={<><Header /><PlaceOrder /><Footer /></>}  />

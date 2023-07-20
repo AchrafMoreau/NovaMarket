@@ -9,9 +9,12 @@ tbody tr{
   border-top: 3px solid var(--FirstHair-color);
   font-size: 1.2rem;
   color: var(--light-color);
+  overflow: scroll;
 }
 
-
+a{
+  color: var(--SecondHair-color);
+}
 :root{
   /* Colors */
   --primary-color: rgb(227,199,178);
@@ -48,12 +51,21 @@ p, Link, input, label{
     box-shadow: 0px 5px 20px var(--FirstHair-color);
     padding: 5px 10px;
     margin: 25px 0px;
-    width: 100%;
-    background: transparent !important;
+    /* margin: auto; */
+    /* align-self: center; */
+    width: 80%;
+    margin-left: 10% ;
+    background: rgba(227,199,178, .0) !important;
+    backdrop-filter: blur(10px);
     position: fixed;
     border-radius: 30px;
     border: none;
-    z-index: 99999
+    z-index: 99999;
+    transition: all .5s;
+    /* border: 1px solid red; */
+}
+.scrollMynav{
+  transform: translateY(-100px);
 }
 #nav #name{
     color: #fff;
@@ -471,8 +483,7 @@ input[type=file]::file-selector-button:hover {
 .infoProductCard{
   background: var(--primary-color) ;
   border-radius: 15px !important;
-  max-height: 50vh;
-  overflow-y: scroll;
+  margin-bottom: 5px;
 }
 .price{
   font-size: 1.2rem;
@@ -495,4 +506,65 @@ input[type=file]::file-selector-button:hover {
   padding: 10px 20px;
   font-size: 1.2rem;
   background: transparent;
+}
+#checkout{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--primary-font);
+}
+
+#checkout li {
+  border: 1px solid var(--forth-color);
+  margin: 5px 20px;
+  border-radius: 15px;
+  padding: 10px 20px;
+  position: relative;
+  list-style: none;
+}
+#checkout li:not(:last-child)::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0px;
+  width: 40px;
+  background: var(--forth-color);
+  height: 2px;
+  transform: translateX(100%);
+}
+.activeCheckout::before{
+  background: var(--FirstHair-color) !important;
+}
+.activeCheckout{
+  background: var(--lipstik-color);
+  border: 1px solid var(--FirstHair-color) !important;
+  box-shadow: 0px 0px 20px rgba(207, 18, 198, 0.346);
+}
+.activeCheckout a{
+  color: var(--light-color) !important;
+}
+
+@media (width <= 798px) {
+  #checkout{
+    /* border: 1px solid red; */
+    margin: 0px;
+    padding: 0px;
+  }
+  #checkout li{
+    margin: 10px;
+    padding: 0px 10px;
+  }
+  #checkout li:not(:last-child)::before{
+    width: 20px;
+  }
+}
+
+#card .infoProductCard{
+  padding: 10px 20px;
+  background: var(--secondary-color);
+  font-family: var(--primary-font);
+}
+#card .infoProductCard a{
+  font-size: 1.2rem;
 }
