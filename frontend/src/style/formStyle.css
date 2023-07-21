@@ -269,7 +269,7 @@
 }
 
 .checkoutBtn:hover::before {
-  scale: 6.5;
+  scale: 7;
 }
 
 .checkoutBtn:hover {

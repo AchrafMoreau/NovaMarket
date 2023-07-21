@@ -77,9 +77,9 @@ const Header = ()=>{
                         </div>
                     </li> : 
                     
-                    <li className="nav-item">
+                    <li className="nav-item me-2">
                         <Link to='/login' className="nav-link"id="name" href="#">
-                            <i className="fa-solid fa-user"></i>
+                            <i className="fa-solid fa-user me-2"></i>
                             sign in
                         </Link>
                     </li>
@@ -90,7 +90,7 @@ const Header = ()=>{
                                 <div id="admin" className="dropdown-toggle " style={{cursor: "pointer"}} data-bs-toggle="dropdown" aria-expanded="false">
                                     Admin
                                 </div>
-                                <ul className="dropdown-menu">
+                                <ul className="dropdown-menu" id="fkdrop">
                                     <Link to='/admin/users' className="dropdown-item">Users</Link>
                                     <Link to='/admin/products'className="dropdown-item">Products</Link>
                                     <Link to='/admin/orders' className="dropdown-item">Orders</Link>

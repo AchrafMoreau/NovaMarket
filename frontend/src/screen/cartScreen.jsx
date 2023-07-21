@@ -29,13 +29,16 @@ export const CartScreen = () => {
         navigate("/login/?redirect=/shipping")
     }
 
-    const plusHnalder = (qty, stock)=>{
-        console.log(qty, stock)
-        if(qty > stock){ 
-            return qty
-        }else{
-            return qty++
-        }
+    const plusHandler = (id, stock)=>{
+        const myelem = document.getElementById(id)
+        myelem.value < stock ? myelem.value++ : myelem.value
+        // console.log(myelem.value, id)
+        dispatsh(addToCart(id, Number(myelem.value)))
+    }
+    const minusHandler = (id, stock)=>{
+        const myelem = document.getElementById(id)
+        myelem.value > 1 ? myelem.value-- : myelem.value
+        dispatsh(addToCart(id, Number(myelem.value)))
     }
     return (
         <>
@@ -68,19 +71,10 @@ export const CartScreen = () => {
                                                         ${(elm.price * elm.qty).toFixed(2)}
                                                     </div>
                                                     <div className="col-md-3"> 
-                                                        <select className="form-select" value={elm.qty} onChange={(e)=> dispatsh(addToCart(elm.product, Number(e.target.value)))} >
-                                                            {[...Array(elm.countInStock).keys()].map(elm=>{
-                                                                return(
-                                                                    <option value={elm +1} key={elm + 1}>
-                                                                        {elm + 1}
-                                                                    </option>
-                                                                )
-                                                            })}
-                                                        </select>
                                                         <div class="quantity buttons_added">
-                                                            <input type="button" value="-" class="minus" onClick={()=>{elm.qty = elm.qty -1}}/>
-                                                            <input type="number" step="1" min="1"  name="quantity" value={elm.qty} title="Qty" class="input-text qty text" size="4" pattern="" inputmode="" onChange={(e)=> dispatsh(addToCart(elm.product, Number(e.target.value)))}/>
-                                                            <input type="button" value="+" class="plus" onClick={()=>plusHnalder(elm.qty, elm.countInStock)}/>
+                                                            <input type="button" value="-" class="minus" onClick={()=>minusHandler(elm.product, elm.countInStock)}/>
+                                                            <input type="number" step="1" min="1"  name="quantity" value={elm.qty} id={elm.product}  class="input-text qty text" size="4" pattern="" inputmode="" onChange={(e)=> dispatsh(addToCart(elm.product, Number(e.target.value)))}/>
+                                                            <input type="button" value="+" class="plus" onClick={()=>plusHandler(elm.product, elm.countInStock)}/>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-2">

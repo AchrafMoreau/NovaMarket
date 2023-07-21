@@ -22,7 +22,6 @@ app.use("/api/order", OrderRouter)
 app.use('/api/upload', uploadRouter)
 
 
-            
 
 // making a folder accessible
 const __dirname = path.resolve()

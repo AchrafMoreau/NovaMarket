@@ -2,6 +2,7 @@ import asyncHandler from 'express-async-handler';
 import Product from "../Models/productModel.js";
 
 
+
 const getAllProducts = asyncHandler( async(req, res)=>{
     const allproduct = await Product.find({}).sort({createdAt: "desc"})
     res.json(allproduct)
@@ -67,8 +68,43 @@ const updateProduct = asyncHandler(async(req, res)=>{
         }else{
             res.status(400)
             throw new Error("No Product Was Found....")
+           
         }
 
+    }
+})
+
+const createProductReview = asyncHandler(async(req, res)=>{
+    const {comment, rating} = req.body
+
+    console.log(comment, rating)
+
+    const product = await Product.findById(req.params.id)
+
+    if(product){
+        const alreadyExist = product.reviews.find(elm => elm.user.toString() === req.user._id.toString())
+
+        if(alreadyExist){
+            res.status(400)
+            throw new Error("Product already reviewed")
+        }
+        console.log('we good')
+        const Review = {
+            name: req.user.name,
+            rating: Number(rating),
+            comment,
+            user: req.user._id
+        }
+
+        product.reviews.push(Review)
+        product.numReviews = product.reviews.length
+        product.rating = product.reviews.reduce((acc, curr)=> curr.rating + acc, 0) / product.reviews.length
+
+        await product.save()
+        res.status(200).json("Review added")
+    }else{
+        res.status(400)
+        throw new Error("No Product Was Found....")
     }
 })
 export {
@@ -77,4 +113,5 @@ export {
     deleteProduct,
     createProduct,
     updateProduct,
+    createProductReview,
 }

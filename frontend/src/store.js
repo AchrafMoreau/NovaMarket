@@ -5,6 +5,7 @@ import { ReducerProductList,
         RuduceProductDetail, 
         adminAddingProductReducer, 
         adminModifyProductReducer, 
+        creatingProductReviewReducer, 
         deleteProductReducer 
     } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers';
@@ -23,6 +24,10 @@ import { OrderReducer,
         orderUpdateToDeliveredReducer,
         updateOrderReducer
     } from './reducers/orderReducers';
+
+
+
+
  
 const reducer = combineReducers({
     ProductList: ReducerProductList,
@@ -30,6 +35,7 @@ const reducer = combineReducers({
     deleteProduct: deleteProductReducer,
     addProduct: adminAddingProductReducer,
     modifyProduct: adminModifyProductReducer,
+    creatingProductReview: creatingProductReviewReducer,
     cart: cartReducer,
     userLogin : userLoginReducer,
     userRegister : userRigesterReducer,
@@ -66,7 +72,6 @@ const initialState = {
 
 
 const middleware = [thunk]
-
 
 const store = createStore(
     reducer, 
